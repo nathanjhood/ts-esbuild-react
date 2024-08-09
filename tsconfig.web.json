@@ -1,0 +1,36 @@
+{
+	"compilerOptions": {
+		"tsBuildInfoFile": "./node_modules/.tmp/tsconfig.web.tsbuildinfo",
+		"composite": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "target": "ES6",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    // "noEmit": true,
+		"noEmit": false,
+    "jsx": "react-jsx",
+		"outDir": "./dist"
+  },
+  "include": [
+		"esbuild.config.ts",
+		"esbuild.build.ts",
+    "src"
+  ],
+	"exclude": [
+		"node_modules",
+		".bak"
+	]
+}
