@@ -1,0 +1,39 @@
+{
+  "name": "@stoneydsp/ts-esbuild-react",
+  "version": "1.0.0",
+  "main": "index.html",
+  "author": "StoneyDSP <nathanjhood@googlemail.com>",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "node ./scripts/esbuild.build.js",
+    "start": "node ./scripts/esbuild.serve.js",
+    "analyze": "node ./scripts/esbuild.analyze.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^22.1.0",
+    "@types/prop-types": "^15.7.12",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "csstype": "^3.1.3",
+    "esbuild": "^0.23.0",
+    "esbuild-plugin-tsc": "^0.4.0",
+    "strip-comments": "^2.0.1",
+    "typescript": "^5.5.4"
+  }
+}
