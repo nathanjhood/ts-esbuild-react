@@ -6,8 +6,9 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "dev": "node ./scripts/esbuild.serve.js",
     "build": "node ./scripts/esbuild.build.js",
-    "start": "node ./scripts/esbuild.serve.js",
+    "start": "node ./dist/bundle.js",
     "analyze": "node ./scripts/esbuild.analyze.js"
   },
   "engines": {
