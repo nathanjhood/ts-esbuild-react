@@ -1,40 +1,51 @@
 {
-  "name": "@stoneydsp/ts-esbuild-react",
-  "version": "1.0.0",
-  "main": "index.html",
-  "author": "StoneyDSP <nathanjhood@googlemail.com>",
-  "license": "MIT",
-  "type": "module",
-  "scripts": {
-    "dev": "node ./scripts/esbuild.serve.js",
-    "build": "node ./scripts/esbuild.build.js",
-    "start": "node ./dist/bundle.js",
-    "analyze": "node ./scripts/esbuild.analyze.js"
-  },
-  "engines": {
-    "node": ">=18"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@types/node": "^22.1.0",
-    "@types/prop-types": "^15.7.12",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "csstype": "^3.1.3",
-    "esbuild": "^0.23.0",
-    "esbuild-plugin-tsc": "^0.4.0",
-    "strip-comments": "^2.0.1",
-    "typescript": "^5.5.4"
-  }
+    "name": "@stoneydsp/ts-esbuild-react",
+    "version": "1.0.0",
+    "main": "index.html",
+    "author": "StoneyDSP <nathanjhood@googlemail.com>",
+    "license": "MIT",
+    "type": "module",
+    "scripts": {
+        "dev": "node ./scripts/esbuild.serve.js",
+        "build": "node ./scripts/esbuild.build.js",
+        "start": "node ./dist/bundle.js",
+        "analyze": "node ./scripts/esbuild.analyze.js"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "engines": {
+        "node": ">=18"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@testing-library/jest-dom": "^6.4.8",
+        "@testing-library/react": "^16.0.0",
+        "@testing-library/user-event": "^14.5.2",
+        "@types/jest": "^29.5.12",
+        "@types/node": "^22.1.0",
+        "@types/prop-types": "^15.7.12",
+        "@types/react": "^18.3.3",
+        "@types/react-dom": "^18.3.0",
+        "csstype": "^3.1.3",
+        "esbuild": "^0.23.0",
+        "esbuild-plugin-tsc": "^0.4.0",
+        "strip-comments": "^2.0.1",
+        "typescript": "^5.5.4",
+        "web-vitals": "^4.2.3"
+    }
 }
