@@ -5,11 +5,12 @@ on: [push]
 jobs:
   build:
 
-    runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        node-version: [20]
+        os: [ubuntu-latest, windows-latest, darwin-latest]
+        node-version: [18, 20]
+
+    runs-on: ${{ matrix.os }}
 
     steps:
     - uses: actions/checkout@v3
@@ -19,5 +20,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: yarn install
     - run: yarn build
-    - run: yarn start
+    # - run: yarn start
+    # - run: yarn test
     
