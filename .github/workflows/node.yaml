@@ -26,7 +26,7 @@ jobs:
     
     - uses: actions/checkout@v3
     
-    - name: Setup ${{ matrix.node-version }}
+    - name: Setup
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
@@ -45,6 +45,7 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
+        name: ts-esbuild-react-${{ matrix-os }}-node-v${{ matrix.node_version }}
         path: '${{ github.workspace }}/dist'
 
     - name: Download Artifact
