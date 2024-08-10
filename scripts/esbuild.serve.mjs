@@ -1,20 +1,22 @@
 import * as esbuild from 'esbuild';
 import * as config  from '../esbuild.config.mjs';
-export {}
+import * as tsc from './tsc.serve.mjs';
 
 const options = config.createBuildOptions({
   sourcemap: true,
-  format: 'cjs',
+  bundle: true,
+  // format: 'cjs',
   banner: {
     // NODE - Append Hot reload event listener to DOM
-    js: `new EventSource('/esbuild').addEventListener('change', () => location.reload());`,
+    // js: `new EventSource('/esbuild').addEventListener('change', () => location.reload());`,
     // // BROSWER - Append Hot reload event listener to DOM
-    // js: ' (() => new EventSource("/esbuild").onmessage = () => location.reload())();'
+    js: ' (() => new EventSource("/esbuild").onmessage = () => location.reload())();'
   }
 });
 
 const ctx = await esbuild.context(options);
 
+await tsc.createTscServer()
 await ctx.watch();
 
 console.info("watching...")

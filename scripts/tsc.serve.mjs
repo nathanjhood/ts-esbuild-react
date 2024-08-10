@@ -1,4 +1,6 @@
-const createTscServer = () => {
+import { spawn } from 'child_process';
+
+export const createTscServer = async () => {
 	const tsc = spawn('npx tsc', ['--noEmit --watch --skipLibCheck --pretty --project tsconfig.json'], {
 	  shell: true
 	})
@@ -9,3 +11,5 @@ const createTscServer = () => {
 	  console.error(`error: ${error.message}`)
 	})
 }
+
+export default createTscServer
