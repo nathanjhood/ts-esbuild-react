@@ -1,5 +1,5 @@
 import * as esbuild from 'esbuild';
-import { createBuildOptions } from './esbuild.config.js';
+import { createBuildOptions } from './esbuild.config.mjs';
 
 const options = createBuildOptions({
   entryPoints: ['src/App.tsx'],
@@ -7,7 +7,7 @@ const options = createBuildOptions({
   minify: true,
   // format: 'cjs',
   sourcemap: true,
-  outfile: 'dist/output.js',
+  outfile: 'dist/app.js',
   external: ['react', 'react-dom'],
 });
 
