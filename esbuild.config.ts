@@ -37,20 +37,21 @@ const config = (() => {
 
   return {
     external: ['react', 'react-dom'],
-    entryPoints: ['src/App.tsx'],
+    entryPoints: ['src/index.tsx'],
     outfile: fileURLToPath(new URL(`${publicOutputDir}/${publicOutFile}`, import.meta.url)),
     sourcemap: true,
     bundle: true,
     minify: false,
-    // loader: {
-    //   '.tsx': 'tsx',
-    //   '.ts': 'ts'
-    // },
+		loader: {
+		  '.tsx': 'tsx',
+		  '.ts': 'ts',
+		  '.svg': 'dataurl'
+		},
     banner: {
       // NODE - Append Hot reload event listener to DOM
       // js: `new EventSource('/esbuild').addEventListener('change', () => location.reload());`,
       // // BROSWER - Append Hot reload event listener to DOM
-      js: ' (() => new EventSource("/esbuild").onmessage = () => location.reload())();'
+      js: ' (() => new EventSource("/esbuild").onmessage = () => location.reload())(); '
 
     },
     // watch: {
@@ -67,12 +68,12 @@ const config = (() => {
     //       )
     //   }
     // },
-    define: {
-      'process.env.NODE_ENV': '"development"',
-      'process.env.DEBUG': '"FALSE"',
-      'process.env.GATEWAY_HOST': '"http://localhost"',
-      'process.env.GATEWAY_PORT': '"5000"'
-    },
+    // define: {
+    //   'process.env.NODE_ENV': '"development"',
+    //   'process.env.DEBUG': '"FALSE"',
+    //   'process.env.GATEWAY_HOST': '"http://localhost"',
+    //   'process.env.GATEWAY_PORT': '"5000"'
+    // },
     plugins: [
       esbuildPluginTsc(Object.freeze<TscOptions>(
         {

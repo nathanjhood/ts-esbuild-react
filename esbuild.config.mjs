@@ -17,21 +17,42 @@ export const createBuildOptions = (options) => {
 	const destinationHTML = `${publicOutputDir}/index.html`
 
   	return {
-		external: ['react', 'react-dom'],
+		// external: ['react', 'react-dom'],
 		entryPoints: [
+			fileURLToPath(new URL('src/index.tsx', import.meta.url)),
 			fileURLToPath(new URL('src/App.tsx', import.meta.url))
 		],
-		outfile: fileURLToPath(new URL(publicOutFile, import.meta.url)),
+		// outfile: fileURLToPath(new URL(publicOutFile, import.meta.url)),
+		outdir: fileURLToPath(new URL('./dist', import.meta.url)),
 		sourcemap: true,
 		bundle: true,
 		minify: true,
-		define: {
-			'process.env.NODE_ENV': '"development"',
-			'process.env.DEBUG': '"FALSE"',
-			'process.env.GATEWAY_HOST': '"http://localhost"',
-			'process.env.GATEWAY_PORT': '"5000"',
-			'__BASE__': "foofoofoo"
-		  },
+		loader: {
+		//   '.tsx': 'tsx',
+		//   '.ts': 'ts',
+		  '.svg': 'dataurl'
+		},
+		banner: {
+			// NODE - Append Hot reload event listener to DOM
+			// js: `new EventSource('/esbuild').addEventListener('change', () => location.reload());`,
+			// // BROSWER - Append Hot reload event listener to DOM
+			js: ' (() => new EventSource("/esbuild").onmessage = () => location.reload())(); '
+
+		},
+		// watch: {
+		//   onRebuild(error) {
+		//     clients.forEach(res => res.write('data: update\n\n'))
+		//     clients.length = 0
+		//     if (error)
+		//       console.log(
+		//         `[${chalk.grey(moment().format('h:mm:ss A'))}] esbuild: ${chalk.red('error while rebuilding code')}`
+		//       )
+		//     else
+		//       console.log(
+		//         `[${chalk.grey(moment().format('h:mm:ss A'))}] esbuild: ${chalk.green('code rebuilt successfully')}`
+		//       )
+		//   }
+		// },
 		plugins: [
 			esbuildPluginTsc({
 				force: true,
