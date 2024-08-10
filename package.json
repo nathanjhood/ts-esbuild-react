@@ -1,15 +1,16 @@
 {
     "name": "@stoneydsp/ts-esbuild-react",
     "version": "1.0.0",
-    "main": "index.html",
+    "main": "dist/index.html",
     "author": "StoneyDSP <nathanjhood@googlemail.com>",
     "license": "MIT",
 
     "scripts": {
         "dev": "node ./scripts/esbuild.serve.mjs",
         "build": "node ./scripts/esbuild.build.mjs",
-        "start": "node ./dist/app.js",
-        "analyze": "node ./scripts/esbuild.analyze.mjs"
+        "analyze": "node ./scripts/esbuild.analyze.mjs",
+				"start": "node ./dist/app.js",
+				"test": "echo \"Error: no test specified\" && exit 1"
     },
     "eslintConfig": {
         "extends": [
