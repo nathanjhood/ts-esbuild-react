@@ -13,8 +13,9 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  run:
 
+  run:
+  
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
@@ -54,7 +55,6 @@ jobs:
       with:
         name: ts-esbuild-react-${{ matrix.os }}-node-v${{ matrix.node-version }}
         path: '${{ github.workspace }}/dist'
-        github-token: ${{ env.GITHUB_TOKEN }}
 
     - name: Download Artifact
       uses: actions/download-artifact@v4
