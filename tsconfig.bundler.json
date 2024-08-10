@@ -1,11 +1,14 @@
 {
-	"compilerOptions": {
-		"tsBuildInfoFile": "./node_modules/.tmp/tsconfig.bundler.tsbuildinfo",
-		"composite": true,
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.bundler.tsbuildinfo",
+    "composite": true,
     "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
+      "DOM",
+      "DOM.Iterable",
+      "ESNext",
+    ],
+    "types": [
+      "node"
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -20,20 +23,22 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     // "noEmit": true,
-		"noEmit": false,
+    "noEmit": false,
     "jsx": "preserve",
-		"outDir": "./dist",
-		"baseUrl": "./",
-		"paths": {
-			"@/*": ["src/*"]
-		}
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    }
   },
   "include": [
-		".esbuild/**/*.ts",
-    // "scripts"
+    ".esbuild/**/*.ts",
+    "scripts"
   ],
-	"exclude": [
-		"node_modules",
-		".bak"
-	]
+  "exclude": [
+    // "node_modules",
+    ".bak"
+  ]
 }

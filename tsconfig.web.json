@@ -1,7 +1,7 @@
 {
-	"compilerOptions": {
-		"tsBuildInfoFile": "./node_modules/.tmp/tsconfig.web.tsbuildinfo",
-		"composite": true,
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.web.tsbuildinfo",
+    "composite": true,
     "lib": [
       "dom",
       "dom.iterable",
@@ -20,20 +20,29 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     // "noEmit": true,
-		"noEmit": false,
+    "noEmit": false,
     "jsx": "react-jsx",
-		"outDir": "./dist",
-		"baseUrl": "./",
-		"paths": {
-			"@/*": ["src/*"]
-		},
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "typeRoots": [
+      "types",
+      "node_modules/@types"
+    ],
+    "types": [
+      "node"
+    ]
   },
   "include": [
     "src"
   ],
-	"exclude": [
-		"node_modules",
-		".bak",
-		".esbuild"
-	]
+  "exclude": [
+    // "node_modules",
+    ".bak",
+    ".esbuild"
+  ]
 }
