@@ -52,7 +52,7 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ts-esbuild-react-${{ matrix.os }}-node-v${{ matrix.node_version }}
+        name: ts-esbuild-react-${{ matrix.os }}-node-v${{ matrix.node-version }}
         path: '${{ github.workspace }}/dist'
 
     - name: Download Artifact
