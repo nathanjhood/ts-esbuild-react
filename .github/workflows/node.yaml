@@ -13,7 +13,7 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  build:
+  run:
 
     strategy:
       matrix:
@@ -23,8 +23,9 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-    
-    - uses: actions/checkout@v3
+
+    - name: Checkout
+      uses: actions/checkout@v3
     
     - name: Setup
       uses: actions/setup-node@v4
@@ -34,18 +35,24 @@ jobs:
         cache-dependency-path: yarn.lock
 
     - name: Install
+      shell: bash
+      working-directory: ${{github.workspace}}
       run: yarn install
 
     - name: Build
+      shell: bash
+      working-directory: ${{github.workspace}}
       run: yarn build
 
     # - name: Test
+    #   shell: bash
+    #   working-directory: ${{github.workspace}}
     #   run: yarn test
     
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ts-esbuild-react-${{ matrix-os }}-node-v${{ matrix.node_version }}
+        name: ts-esbuild-react-${{ matrix.os }}-node-v${{ matrix.node_version }}
         path: '${{ github.workspace }}/dist'
 
     - name: Download Artifact
