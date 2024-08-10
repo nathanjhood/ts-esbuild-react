@@ -22,15 +22,18 @@
     // "noEmit": true,
 		"noEmit": false,
     "jsx": "react-jsx",
-		"outDir": "./dist"
+		"outDir": "./dist",
+		"baseUrl": "./",
+		"paths": {
+			"@/*": ["src/*"]
+		},
   },
   "include": [
-		"esbuild.config.ts",
-		"esbuild.build.ts",
     "src"
   ],
 	"exclude": [
 		"node_modules",
-		".bak"
+		".bak",
+		".esbuild"
 	]
 }
