@@ -13,7 +13,7 @@ const config = [
   {
     // extends: ["react-app", "react-app/jest"],
     files: ['{src,lib}/**/*.{js,cjs.mjs,ts,cts,mts}', 'src/**/*.{jsx,tsx}'],
-    ignores: ['**/*.config.{js,cjs.mjs,ts,cts,mts}'],
+    // ignores: ['**/*.config.{js,cjs.mjs,ts,cts,mts}'],
     rules: {
       'no-restricted-globals': ['error'].concat(restrictedGlobals),
       semi: 'warn',
