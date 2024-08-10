@@ -1,25 +1,28 @@
 import * as React from 'react'
+import * as ReactDom from 'react-dom'
 // import * as Server from 'react-dom/server'
+import logo from './logo.svg';
+import './App.css';
 
 // let Greet = () => <h1>Hello, world!</h1>
 // console.log(Server.renderToString(<Greet />))
 
-// import React from 'react'
-// import Server from 'react-dom/server'
+export function App() {
 
-// import React from 'react';
-// import logo from './logo.svg';
-import './App.css';
+  React.useEffect(() => {
+    window.process = {
+      ...window.process
+    };
+  }, []);
 
-function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src="/logo.svg" className="App-logo" alt="logo" />
-        { /** <img src={logo} className="App-logo" alt="logo" /> */}
+        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
+        <h1 className="text-5xl font-bold underline">Hello world!</h1>
         <a
           className="App-link"
           href="https://reactjs.org"
