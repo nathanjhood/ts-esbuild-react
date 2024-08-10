@@ -1,5 +1,5 @@
 import * as esbuild from 'esbuild';
-import { createBuildOptions } from './esbuild.config.mjs';
+import { createBuildOptions } from '../esbuild.config.js';
 
 const options = createBuildOptions({
   entryPoints: ['src/App.tsx'],
@@ -11,6 +11,10 @@ const options = createBuildOptions({
   external: ['react', 'react-dom'],
 });
 
-await esbuild.build(options);
+const build = await esbuild.build(options)
+.catch((err) => {
+	console.error(err);
+	process.exit(1)
+});
 
-export {}
+console.info(build)

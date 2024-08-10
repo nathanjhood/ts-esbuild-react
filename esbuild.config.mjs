@@ -25,13 +25,13 @@ export const createBuildOptions = (options) => {
 		sourcemap: true,
 		bundle: true,
 		minify: true,
-		// define: {
-		// 	'process.env.NODE_ENV': '"development"',
-		// 	'process.env.DEBUG': '"FALSE"',
-		// 	'process.env.GATEWAY_HOST': '"http://localhost"',
-		// 	'process.env.GATEWAY_PORT': '"5000"',
-		// 	'__BASE__': "foofoofoo"
-		//   },
+		define: {
+			'process.env.NODE_ENV': '"development"',
+			'process.env.DEBUG': '"FALSE"',
+			'process.env.GATEWAY_HOST': '"http://localhost"',
+			'process.env.GATEWAY_PORT': '"5000"',
+			'__BASE__': "foofoofoo"
+		  },
 		plugins: [
 			esbuildPluginTsc({
 				force: true,
