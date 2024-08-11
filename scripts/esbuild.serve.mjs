@@ -1,5 +1,5 @@
 import * as esbuild from 'esbuild';
-import * as config  from '../esbuild.config.mjs';
+import * as config from '../esbuild.config.mjs';
 import * as tsc from './tsc.serve.mjs';
 
 const options = config.createBuildOptions({
@@ -32,14 +32,14 @@ console.log(`Serving app at http://${host}:${port}.`);
 
 // Whenever we get some data over stdin
 process.stdin.on('data', async () => {
-	try {
-	  	// Cancel the already-running build
-	  	await ctx.cancel()
-	  	// Then start a new build
-	  	console.info('build:', await ctx.rebuild())
-	} catch (err) {
-	  	console.error(err)
-	}
+  try {
+    // Cancel the already-running build
+    await ctx.cancel()
+    // Then start a new build
+    console.info('build:', await ctx.rebuild())
+  } catch (err) {
+    console.error(err)
+  }
 })
 
 // // exit routine
