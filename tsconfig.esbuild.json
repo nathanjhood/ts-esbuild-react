@@ -1,11 +1,15 @@
 {
   "compilerOptions": {
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.web.tsbuildinfo",
+    "tsBuildInfoFile": "node_modules/.tmp/tsconfig.esbuild.tsbuildinfo",
     "composite": true,
     "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
+      "DOM",
+      "DOM.Iterable",
+      "ESNext",
+    ],
+    "types": [
+      "node",
+      "eslint"
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -21,28 +25,22 @@
     "isolatedModules": true,
     // "noEmit": true,
     "noEmit": false,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "outDir": "./dist",
     "baseUrl": "./",
     "paths": {
       "@/*": [
         "src/*"
       ]
-    },
-    "typeRoots": [
-      "types",
-      "node_modules/@types"
-    ],
-    "types": [
-      "node"
-    ]
+    }
   },
   "include": [
-    "src"
+    ".eslint",
+    ".esbuild/**/*.ts",
+    "scripts"
   ],
   "exclude": [
     // "node_modules",
-    ".bak",
-    ".esbuild"
+    ".bak"
   ]
 }

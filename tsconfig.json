@@ -1,15 +1,15 @@
 {
-	"files": [],
-	"references": [
-		{
-			"path": "./tsconfig.bundler.json"
-		},
-		{
-			"path": "./tsconfig.web.json"
-		}
-	],
-	"compilerOptions": {
-    "module": "NodeNext",
-		"outDir": "./dist"
-  }
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.esbuild.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ],
+  // "compilerOptions": {
+  //   "module": "NodeNext",
+  //   "outDir": "./dist"
+  // }
 }
