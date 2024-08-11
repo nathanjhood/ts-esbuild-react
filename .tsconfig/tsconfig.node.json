@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
     "target": "ES2022",
+    "types": [
+      "node"
+    ],
     "lib": [
       "ES2023"
     ],
@@ -16,10 +19,12 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": "../"
   },
   "include": [
     "../index.d.ts",
+    "../env.d.ts",
     "../esbuild.config.ts",
     "../tailwind.config.ts"
   ]
