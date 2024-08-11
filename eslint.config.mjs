@@ -1,61 +1,67 @@
-import js from '@eslint/js'
-// import restrictedGlobals from 'confusing-browser-globals'
-import globals from 'globals'
-import react from 'eslint-plugin-react'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import tseslint from 'typescript-eslint'
+// @ts-check
 
-/** @type { import("typescript-eslint").Config } */
-const config = tseslint.config(
+import * as tseslint from 'typescript-eslint'
+import globals from 'globals'
+
+const base = await import('./.eslint/base.mjs').then((config) => config.default).catch((err) => { console.error(err); return {}; })
+const prettier = await import('./.eslint/prettier.mjs').then((config) => config.default).catch((err) => { console.error(err); return {}; })
+const javascript = await import('./.eslint/javascript.mjs').then((config) => config.default).catch((err) => { console.error(err); return {}; })
+const typescript = await import('./.eslint/typescript.mjs').then((config) => config.default).catch((err) => { console.error(err); return {}; })
+const react_refresh = await import('./.eslint/react_refresh.mjs').then((config) => config.default).catch((err) => { console.error(err); return {}; })
+const react_hooks = await import('./.eslint/react_hooks.mjs').then((config) => config.default).catch((err) => { console.error(err); return {}; })
+const react = await import('./.eslint/react.mjs').then((config) => config.default).catch((err) => { console.error(err); return {}; })
+const react_jsx_runtime = await import('./.eslint/react_jsx_runtime.mjs').then((config) => config.default).catch((err) => { console.error(err); return {}; })
+const jest = await import('./.eslint/jest.mjs').then((config) => config.default).catch((err) => { console.error(err); return {}; })
+
+export const config = tseslint.config(
+  base,
+  javascript,
+  typescript,
+  react,
+  react_jsx_runtime,
+  react_hooks,
+  react_refresh,
+  jest,
+  prettier,
   {
+    name: 'project',
     extends: [
-      js.configs.recommended,
-      // ...tseslint.configs.recommended,
-      ...tseslint.configs.recommendedTypeChecked,
-      // ...tseslint.configs.strictTypeChecked,
-      ...tseslint.configs.stylisticTypeChecked
+      base,
+      // // tseslint.configs['eslintRecommended'], // or 'base'
+      // ...tseslint.configs['strict'],
+      // // ...tseslint.configs['recommendedTypeCheckedOnly'],
+      // // ...tseslint.configs['strictTypeCheckedOnly'],
+      // ...tseslint.configs['stylisticTypeCheckedOnly'],
     ],
     files: [
-      '**/*.{jsx,tsx}',
-      'lib/**/*.{js,cjs.mjs,ts,cts,mts}',
-      'src/**/*.{js,cjs.mjs,ts,cts,mts}',
-      'scripts/**/*.{js,cjs.mjs,ts,cts,mts}'
+      'lib',
+      'src',
+      'scripts'
     ],
     ignores: ['dist'],
     settings: { react: { version: '18.3' } },
-    plugins: {
-      'react': react,
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
-    },
     rules: {
-      // 'no-restricted-globals': ['error'].concat(restrictedGlobals),
-      // semi: 'warn',
+      // ...js.configs.recommended.rules,
+      semi: 'warn',
       'prefer-const': 'warn',
-      // 'no-unused-vars': 'warn',
       // // plugins
+      '@typescript-eslint/non-nullable-type-assertion-style': 'warn',
       '@typescript-eslint/no-unused-vars': 'warn',
-      ...reactHooks.configs.recommended.rules,
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
-      ...react.configs.recommended.rules,
-      ...react.configs['jsx-runtime'].rules,
     },
 
     linterOptions: {
       reportUnusedDisableDirectives: 'error'
     },
+    // env: {
+    //   "jest/globals": true
+    // },
     languageOptions: {
       ecmaVersion: 'latest',
+      globals: globals.browser,
       parserOptions: {
-        project: ['./tsconfig.bundler.json', './tsconfig.web.json'],
+        // project: ['./tsconfig.bundler.json', './tsconfig.web.json'],
+        projectService: true,
         tsconfigRootDir: import.meta.dirname,
-        ecmaFeatures: {
-          jsx: true
-        },
         globals: globals.browser
       }
     }
