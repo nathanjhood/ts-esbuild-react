@@ -18,7 +18,7 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "target": "ES6",
+    "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "resolveJsonModule": true,
@@ -35,8 +35,12 @@
     }
   },
   "include": [
-    ".eslint",
+    // ".eslint",
+    ".esbuild",
     ".esbuild/**/*.ts",
+    "esbuild.config.*",
+    // "eslint.config.*",
+    "tailwind.config.*",
     "scripts"
   ],
   "exclude": [
