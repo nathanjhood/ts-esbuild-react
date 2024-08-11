@@ -1,6 +1,6 @@
 import 'client-only';
-import * as React from 'react';
-import * as ReactDom from 'react-dom';
+// import * as React from 'react';
+// import * as ReactDom from 'react-dom';
 // import * as Server from 'react-dom/server'
 
 import logo from './logo.svg';
@@ -27,13 +27,12 @@ export function App(): JSX.Element {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <h1 className="text-5xl font-bold underline">Hello world!</h1>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://github.com/nathanjhood/ts-esbuild-react"
           target="_blank"
           rel="noopener noreferrer">
-          Learn React
+          Powered by esbuild with Typescript
         </a>
       </header>
     </div>
