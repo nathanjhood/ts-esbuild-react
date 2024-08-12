@@ -103,7 +103,7 @@ The usual `react-scripts`'s Webpack implementation has been replaced with a simi
 
 ### Motivations
 
-Just something I needed to investigate in isolation, to be used as a guideline for other projects, elsewhere.
+Just something I needed to investigate in isolation, to be used as a guideline for [other projects, elsewhere](https://github.com/nathanjhood/ts-esbuild-react-native-web).
 
 In future, I *might* properly functionize the scripts, improve the Typescript server, *possibly* look at hooking into the React dev overlay for error reporting, "eject"... and more, periodically, if time permits.
 

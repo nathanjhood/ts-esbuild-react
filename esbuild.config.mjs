@@ -28,7 +28,8 @@ export const createBuildOptions = (options) => {
     // external: ['react', 'react-dom'],
     entryPoints: [
       fileURLToPath(new URL('src/App.tsx', import.meta.url)),
-      fileURLToPath(new URL('src/index.tsx', import.meta.url)),
+      // fileURLToPath(new URL('src/server.tsx', import.meta.url)),
+      fileURLToPath(new URL('src/index.tsx', import.meta.url))
     ],
     // outfile: fileURLToPath(new URL(publicOutFile, import.meta.url)),
     outbase: fileURLToPath(new URL('src', import.meta.url)),
