@@ -20,12 +20,18 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "baseUrl": "../"
+    "baseUrl": "../",
+    "rootDir": "../src",
+    "outDir": "../dist",
+    "paths": {
+      "@/*": ["../src/*"]
+    }
   },
   "include": [
     "../index.d.ts",
     "../env.d.ts",
     "../esbuild.config.ts",
-    "../tailwind.config.ts"
+    "../tailwind.config.ts",
+    "../scripts"
   ]
 }
