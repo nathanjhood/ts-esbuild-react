@@ -2,7 +2,7 @@
 
 A React starter project template, powered by [esbuild](https://esbuild.github.io/) with Typescript support and a hot-reloading dev server.
 
-[![Node](https://github.com/nathanjhood/ts-esbuild-react/actions/workflows/node.yaml/badge.svg)](https://github.com/nathanjhood/ts-esbuild-react/actions/workflows/node.yaml)
+[![Node](https://github.com/nathanjhood/ts-esbuild-react/actions/workflows/node.yaml/badge.svg)](https://github.com/nathanjhood/ts-esbuild-react/actions/workflows/node.yml)
 
 [![Build and Deploy static content to Pages](https://github.com/nathanjhood/ts-esbuild-react/actions/workflows/static.yml/badge.svg)](https://github.com/nathanjhood/ts-esbuild-react/actions/workflows/static.yml)
 
