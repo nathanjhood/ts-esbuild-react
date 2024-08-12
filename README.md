@@ -2,12 +2,19 @@
 
 A React starter project template, powered by [esbuild](https://esbuild.github.io/) with Typescript support and a hot-reloading dev server.
 
-[![Node](https://github.com/nathanjhood/ts-esbuild-react/actions/workflows/node.yaml/badge.svg)](https://github.com/nathanjhood/ts-esbuild-react/actions/workflows/node.yml)
+---
 
-[![Build and Deploy static content to Pages](https://github.com/nathanjhood/ts-esbuild-react/actions/workflows/static.yml/badge.svg)](https://github.com/nathanjhood/ts-esbuild-react/actions/workflows/static.yml)
+[![Node](https://github.com/nathanjhood/ts-esbuild-react/actions/workflows/node.yml/badge.svg)](https://github.com/nathanjhood/ts-esbuild-react/actions/workflows/node.yml)
+
+[![github-pages](https://github.com/nathanjhood/ts-esbuild-react/actions/workflows/static.yml/badge.svg)](https://github.com/nathanjhood/ts-esbuild-react/actions/workflows/static.yml)
+
+---
 
 ## Contents
 - [Quickstart](#quickstart)
+  - [Develop](#develop)
+  - [Test](#test)
+  - [Deploy](#deploy)
 - [About](#about)
   - [Commands](#commands)
   - [Motivations](#motivations)
@@ -17,19 +24,37 @@ A React starter project template, powered by [esbuild](https://esbuild.github.io
 
 ## Quickstart
 
-Install dependencies (React, esbuild, typescript, etc...)
+### Develop
+
+Install required dependencies (React, esbuild, typescript, etc...)
 
 ```sh
 yarn
 ```
 
-Start a local dev server and open [http://localhost:5500](http://localhost:5500) in your browser:
+Start esbuild's local development server with hot-reloading and typescript support:
 
 ```sh
 yarn dev
 ```
 
-Edit ``src/App.tsx` and build your app. The page will refresh when you save any changes to your source files.
+ Open [http://localhost:5500](http://localhost:5500) in your browser.
+
+Edit `src/App.tsx` - the page in the browser will refresh when you save any changes to your source files in your IDE.
+
+---
+
+### Test
+
+```sh
+yarn test
+```
+
+*Jest support for unit tests will be added at some point, using the standard React template.
+
+---
+
+### Deploy
 
 To create a built application for deployment:
 
@@ -42,8 +67,6 @@ Optionally, preview the built application before deploying:
 ```sh
 yarn preview
 ```
-
-*Jest support for unit tests will be added at some point, using the standard React template.
 
 ---
 
@@ -95,3 +118,5 @@ Or, take inspiration from it for your own projects.
 - https://www.typescriptlang.org/docs/handbook/jsx.html#basic-usage
 - https://eisenbergeffect.medium.com/an-esbuild-setup-for-typescript-3b24852479fe
 - https://gist.github.com/Med-H/5f2e2084309cb75134aa0a106c78e214
+
+---
