@@ -1,7 +1,7 @@
 import 'client-only';
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
-// import * as Server from 'react-dom/server'
+// import * as Server from 'react-dom/server';
 
 import logo from './logo.svg';
 import './App.css';
@@ -31,7 +31,8 @@ export function App(): JSX.Element {
           className="App-link"
           href="https://github.com/nathanjhood/ts-esbuild-react"
           target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer"
+        >
           Powered by esbuild with Typescript
         </a>
       </header>

@@ -1,5 +1,6 @@
 // @ts-check
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import * as esbuild from 'esbuild';
 import esbuildPluginTsc from 'esbuild-plugin-tsc';
 import esbuildPluginCopy from 'esbuild-plugin-copy';
@@ -11,8 +12,8 @@ import { fileURLToPath, URL } from 'url';
  * @return {esbuild.BuildOptions}
  */
 export const createBuildOptions = (options) => {
-  const srcSourceDir = fileURLToPath(new URL('src', import.meta.url));
-  const srcOutputDir = fileURLToPath(new URL('dist', import.meta.url));
+  // const srcSourceDir = fileURLToPath(new URL('src', import.meta.url));
+  // const srcOutputDir = fileURLToPath(new URL('dist', import.meta.url));
   const publicSourceDir = fileURLToPath(new URL('public', import.meta.url));
   const publicOutputDir = fileURLToPath(new URL('dist', import.meta.url));
 
@@ -46,13 +47,13 @@ export const createBuildOptions = (options) => {
     banner: {
       // NODE - Append Hot reload event listener to DOM
       // js: `new EventSource('/esbuild').addEventListener('change', () => location.reload());`,
-      // // BROSWER - Append Hot reload event listener to DOM
+      // // BROWSER - Append Hot reload event listener to DOM
       js: ' (() => new EventSource("/esbuild").onmessage = () => location.reload())(); '
     },
     plugins: [
       esbuildPluginTsc({
         force: true,
-        tsconfigPath: fileURLToPath(new URL('tsconfig.esbuild.json', import.meta.url)),
+        tsconfigPath: fileURLToPath(new URL('tsconfig.json', import.meta.url)),
         tsx: true
       }),
       esbuildPluginClean({

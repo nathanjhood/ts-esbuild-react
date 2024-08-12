@@ -2,14 +2,10 @@
   "files": [],
   "references": [
     {
-      "path": "./tsconfig.esbuild.json"
+      "path": "./.tsconfig/tsconfig.app.json"
     },
     {
-      "path": "./tsconfig.app.json"
+      "path": "./.tsconfig/tsconfig.node.json"
     }
-  ],
-  // "compilerOptions": {
-  //   "module": "NodeNext",
-  //   "outDir": "./dist"
-  // }
+  ]
 }
