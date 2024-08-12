@@ -1,6 +1,8 @@
 # ts-esbuild-react
 
-[![Node CI](https://github.com/nathanjhood/ts-esbuild-react/actions/workflows/node.yaml/badge.svg)](https://github.com/nathanjhood/ts-esbuild-react/actions/workflows/node.yaml)
+[![Node](https://github.com/nathanjhood/ts-esbuild-react/actions/workflows/node.yaml/badge.svg)](https://github.com/nathanjhood/ts-esbuild-react/actions/workflows/node.yaml)
+
+[![Build and Deploy static content to Pages](https://github.com/nathanjhood/ts-esbuild-react/actions/workflows/static.yml/badge.svg)](https://github.com/nathanjhood/ts-esbuild-react/actions/workflows/static.yml)
 
 The `create-react-app` Typescript template's boilerplate code, powered by esbuild instead of `react-scripts`'s Webpack implementation.
 
