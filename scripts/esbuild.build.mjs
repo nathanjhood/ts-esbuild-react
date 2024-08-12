@@ -6,9 +6,15 @@ import { createBuildOptions } from '../esbuild.config.mjs';
 export const options = createBuildOptions({
   bundle: true,
   minify: true,
-  // format: 'cjs',
   sourcemap: true,
-  external: ['react', 'react-dom'],
+  // external: ['react', 'react-dom'],
+  format: 'esm',
+  banner: {
+    // NODE - Append Hot reload event listener to DOM
+    // js: `new EventSource('/esbuild').addEventListener('change', () => location.reload());`
+    // // BROSWER - Append Hot reload event listener to DOM
+    js: ' (() => new EventSource("/esbuild").onmessage = () => location.reload())();'
+  }
 });
 
 /**

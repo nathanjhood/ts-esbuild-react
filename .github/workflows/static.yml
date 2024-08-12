@@ -6,10 +6,12 @@ on:
   push:
     branches:
     - main
+    - development/ci
     - release/*
   pull_request:
     branches:
     - main
+    - development/ci
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -24,6 +26,9 @@ permissions:
 concurrency:
   group: "pages"
   cancel-in-progress: false
+
+env:
+  GITHUB_PAGES: true
 
 jobs:
   # Single deploy job since we're just deploying
@@ -48,13 +53,18 @@ jobs:
         shell: bash
         working-directory: ${{ github.workspace }}
         run: yarn build
+      - name: Fix permissions
+        run: |
+          chmod -c -R +rX "dist/" | while read line; do
+            echo "::warning title=Invalid file permissions automatically fixed::$line"
+          done
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload build output
-          path: '${{ github.workspace }}/dist'
+          path: 'dist/'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
