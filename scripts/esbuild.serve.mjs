@@ -25,7 +25,7 @@ await ctx.watch();
 console.info('watching...');
 
 const { host, port } = await ctx.serve({
-  port: 5500,
+  port: 3000,
   host: '127.0.0.1',
   servedir: './dist',
   fallback: './dist/index.html'

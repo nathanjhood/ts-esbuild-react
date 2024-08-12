@@ -29,7 +29,7 @@
     "dev": "node ./scripts/esbuild.serve.mjs",
     "build": "node ./scripts/esbuild.build.mjs",
     "analyze": "node ./scripts/esbuild.analyze.mjs",
-    "start": "node ./dist/app.js",
+    "preview": "npx -y serve -l 5000 dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:unit": "jest",
     "lint": "eslint .",
