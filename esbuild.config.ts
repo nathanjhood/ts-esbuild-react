@@ -1,12 +1,11 @@
 // @ts-check
 
-import * as esbuild from 'esbuild';
-import esbuildPluginTsc from 'esbuild-plugin-tsc';
-import esbuildPluginCopy from 'esbuild-plugin-copy';
-import esbuildPluginClean from 'esbuild-plugin-clean';
+import * as esbuild from "esbuild";
+import esbuildPluginTsc from "esbuild-plugin-tsc";
+import esbuildPluginCopy from "esbuild-plugin-copy";
+import esbuildPluginClean from "esbuild-plugin-clean";
 
-
-import { fileURLToPath, URL } from 'url'
+import { fileURLToPath, URL } from "url";
 
 // declare type BuildPaths = {
 //   publicSrcDir?: string | URL;
@@ -26,17 +25,19 @@ import { fileURLToPath, URL } from 'url'
 // declare type CleanOptions = (import('esbuild-plugin-clean').CleanOptions)
 // declare type BuildOptions = (import('esbuild').BuildOptions)
 
-
-
 /**
  * @param  {esbuild.BuildOptions} options
  * @return {esbuild.BuildOptions}
  */
-export const createBuildOptions = (options: esbuild.BuildOptions): esbuild.BuildOptions => {
+export const createBuildOptions = (
+  options: esbuild.BuildOptions
+): esbuild.BuildOptions => {
   // const srcSourceDir = fileURLToPath(new URL('src', import.meta.url));
   // const srcOutputDir = fileURLToPath(new URL('dist', import.meta.url));
-  const publicSourceDir = fileURLToPath(new URL('public', import.meta.url));
-  const publicOutputDir = fileURLToPath(new URL('dist', import.meta.url));
+  const publicSourceDir = fileURLToPath(
+    new URL("example/public", import.meta.url)
+  );
+  const publicOutputDir = fileURLToPath(new URL("dist", import.meta.url));
 
   // const publicOutFile = `${publicOutputDir}/app.js`;
   // const srcHtmlFile = `${publicSrcDir}/index.html`;
@@ -48,12 +49,12 @@ export const createBuildOptions = (options: esbuild.BuildOptions): esbuild.Build
   return {
     // external: ['react', 'react-dom'],
     entryPoints: [
-      fileURLToPath(new URL('src/App.tsx', import.meta.url)),
-      fileURLToPath(new URL('src/index.tsx', import.meta.url)),
+      fileURLToPath(new URL("example/src/App.tsx", import.meta.url)),
+      fileURLToPath(new URL("example/src/index.tsx", import.meta.url)),
     ],
     // outfile: fileURLToPath(new URL(publicOutFile, import.meta.url)),
-    outbase: fileURLToPath(new URL('src', import.meta.url)),
-    outdir: fileURLToPath(new URL('dist', import.meta.url)),
+    // outbase: fileURLToPath(new URL("src", import.meta.url)),
+    outdir: fileURLToPath(new URL("dist", import.meta.url)),
 
     sourcemap: true,
     bundle: true,
@@ -61,39 +62,41 @@ export const createBuildOptions = (options: esbuild.BuildOptions): esbuild.Build
     // jsxDev: true,
     // jsx: 'automatic',
     loader: {
-      // '.tsx': 'tsx',
-      // '.ts': 'ts',
-      '.svg': 'dataurl'
+      ".tsx": "tsx",
+      ".ts": "ts",
+      ".js": "js",
+      ".jsx": "jsx",
+      ".svg": "dataurl",
     },
-    banner: {
-      // NODE - Append Hot reload event listener to DOM
-      // js: `new EventSource('/esbuild').addEventListener('change', () => location.reload());`,
-      // // BROWSER - Append Hot reload event listener to DOM
-      js: ' (() => new EventSource("/esbuild").onmessage = () => location.reload())(); '
-    },
+    // banner: {
+    //   // // NODE - Append Hot reload event listener to DOM
+    //   // js: `new EventSource('/esbuild').addEventListener('change', () => location.reload());`,
+    //   // // BROWSER - Append Hot reload event listener to DOM
+    //   // js: ' (() => new EventSource("/esbuild").onmessage = () => location.reload())(); ',
+    // },
     plugins: [
       esbuildPluginTsc({
         force: true,
-        tsconfigPath: fileURLToPath(new URL('tsconfig.json', import.meta.url)),
-        tsx: true
+        tsconfigPath: fileURLToPath(new URL("tsconfig.json", import.meta.url)),
+        tsx: true,
       }),
       esbuildPluginClean({
         patterns: [`${publicOutputDir}/*`, `!${destinationHTML}`],
         sync: true,
-        verbose: false
+        verbose: false,
       }),
       esbuildPluginCopy({
         copyOnStart: true,
-        resolveFrom: 'cwd',
+        resolveFrom: "cwd",
         assets: {
           from: [`${publicSourceDir}/**/*`],
-          to: [`${publicOutputDir}`]
+          to: [`${publicOutputDir}`],
           // keepStructure: true
         },
         verbose: false,
         once: false,
-        globbyOptions: {}
-      })
+        globbyOptions: {},
+      }),
     ],
     // watch: {
     //   onRebuild(error) {
@@ -109,7 +112,7 @@ export const createBuildOptions = (options: esbuild.BuildOptions): esbuild.Build
     //       )
     //   }
     // },
-    ...options // args
+    ...options, // args
   };
 };
 
