@@ -6,7 +6,7 @@ const { signal } = controller;
 const createCli = async () => {
   const cli = spawn(
     './index.ts',
-    ['esbuild.config.ts'],
+    process.argv,
     {
       shell: true,
       signal: signal,
