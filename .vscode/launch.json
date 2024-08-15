@@ -1,0 +1,28 @@
+{
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "runtimeArgs": [
+        "-r",
+        "ts-node/register"
+      ],
+      "args": [
+        "${workspaceFolder}/index.ts"
+      ],
+      "env": {
+        "TS_NODE_PROJECT": "${workspaceFolder}/tsconfig.json",
+        "TS_NODE_IGNORE": "${workspaceFolder}/node_modules/"
+      }
+    },
+    {
+      "type": "cmake",
+      "request": "launch",
+      "name": "Debug portfile(s)",
+      "cmakeDebugType": "external",
+      "pipeName": "/tmp/vcpkg_ext_portfile_dbg",
+      "preLaunchTask": "Debug vcpkg commands"
+    }
+  ],
+}
