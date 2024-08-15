@@ -29,7 +29,9 @@
     "rootDir": "../src",
     "outDir": "../dist",
     "paths": {
-      "@/*": ["../src/*"]
+      "@/*": [
+        "../src/*"
+      ]
     }
   },
   "include": [
