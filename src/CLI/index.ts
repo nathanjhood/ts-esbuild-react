@@ -15,7 +15,7 @@ type CLIOptions = {
 // static const _input_files: string[] = [];
 // static const _show_version: boolean = false;
 
-class CLI {
+export class CLI {
   private static _name: string = "ts-esbuld-react";
   private static _author: string = "nathanjhood <nathanjhood@googlemail.com>";
   private static _license: string = "Copyright 2024 MIT license";
@@ -26,7 +26,7 @@ class CLI {
   private static _input_files: string[] = [];
   private static _show_version: boolean = false;
   private static _show_help: boolean = false;
-  private static _version: string = "1.0.0"; // | object = { major: 1, minor: 0, patch: 0 };
+  private static _version: string = "1.0.0";
   private static _help: string = `
   ${this._name} - ${this._description}
   version ${this._version}
@@ -145,4 +145,4 @@ class CLI {
   }
 }
 
-export = CLI;
+export default CLI;

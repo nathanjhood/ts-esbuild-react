@@ -1,13 +1,8 @@
 #!/usr/bin/env -S yarn tsx
 /// <reference lib="ESNext" />
 
-import CLI from "./CLI";
+import main from ".";
 
-const main = async (argv: string[]) => {
-  const cli = new CLI();
-  const args = await cli.process(argv);
-  console.info(args);
-  return;
-};
+export const cli = (async () => await main(process.argv))();
 
-export = (async () => await main(process.argv))();
+export default cli;

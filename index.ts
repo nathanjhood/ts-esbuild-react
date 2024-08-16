@@ -1,7 +1,5 @@
 #!/usr/bin/env -S yarn tsx
 
-/// <reference path="./index.d.ts" />
-
 import * as process from "process";
 import * as fs from "fs";
 
@@ -60,7 +58,7 @@ class CLI {
     }
 
     // Args passed validation - pass them to an array...
-    this._input_args = argv.slice(2).map((arg, index) => {
+    this._input_args = argv.slice(2).map((arg) => {
       return arg;
     });
 
