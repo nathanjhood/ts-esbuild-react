@@ -1,4 +1,4 @@
-#!/usr/bin/env ts-node
+#!/usr/bin/env -S yarn tsx
 /// <reference lib="ESNext" />
 
 import CLI from "./CLI";
