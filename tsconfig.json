@@ -1,35 +1,8 @@
 {
-  "ts-node": {
-    "cwd": ".",
-    "projectSearchDir": ".",
-    "project": "./tsconfig.json",
-    "files": true,
-    "require": [
-      "tsconfig-paths/register"
-    ],
-    "compilerOptions": {
-      "composite": true,
-      "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.tsnode.tsbuildinfo",
-      "resolveJsonModule": true
-    }
-  },
-  "compilerOptions": {
-    "composite": true,
-    "sourceMap": true,
-    "inlineSourceMap": false,
-    "inlineSources": true,
-    // "declaration": false,
-    "noEmit": false,
-    "outDir": "./.ts-node",
-    "target": "ES2020",
-    "module": "Node16"
-  },
+  "files": [],
   "references": [
     {
-      "path": "./tsconfig.node.json"
-    },
-    {
-      "path": "./tsconfig.tsnode.json"
+      "path": "./tsconfig.tsx.json"
     }
   ]
 }
