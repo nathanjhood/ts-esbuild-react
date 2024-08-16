@@ -1,10 +1,27 @@
 {
   "configurations": [
     {
-      "name": "Attach to process",
+      "name": "run <JS>",
       "type": "node",
-      "request": "attach",
-      "port": 9229,
+      "request": "launch",
+      // Debug current file in VSCode
+      "program": "${workspaceFolder}/dist/cli.mjs",
+      "args": [
+        "esbuild.config.ts",
+        "--version"
+      ],
+      /*
+     * Path to node binary
+     * Assuming locally installed
+     */
+      "runtimeExecutable": "node",
+      /*
+     * Open terminal when debugging starts (Optional)
+     * Useful to see console.logs
+     */
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      // Files to exclude from debugger (e.g. call stack)
       "skipFiles": [
         // Node.js internal core modules
         "<node_internals>/**",
@@ -13,11 +30,14 @@
       ],
     },
     {
-      "name": "tsx",
+      "name": "run <TS>",
       "type": "node",
       "request": "launch",
       // Debug current file in VSCode
-      "program": "${file}",
+      "program": "${workspaceFolder}/src/cli.ts",
+      "args": [
+        "esbuild.config.ts"
+      ],
       /*
      * Path to tsx binary
      * Assuming locally installed
@@ -36,30 +56,6 @@
         // Ignore all dependencies (optional)
         "${workspaceFolder}/node_modules/**",
       ],
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "TS-Node Launch Program",
-      "runtimeArgs": [
-        "-r",
-        "ts-node/register"
-      ],
-      "args": [
-        "${workspaceFolder}/index.ts"
-      ],
-      "env": {
-        "TS_NODE_PROJECT": "${workspaceFolder}/tsconfig.json",
-        "TS_NODE_IGNORE": "${workspaceFolder}/node_modules/"
-      }
-    },
-    {
-      "type": "cmake",
-      "request": "launch",
-      "name": "Debug portfile(s)",
-      "cmakeDebugType": "external",
-      "pipeName": "/tmp/vcpkg_ext_portfile_dbg",
-      "preLaunchTask": "Debug vcpkg commands"
     }
-  ],
+  ]
 }
