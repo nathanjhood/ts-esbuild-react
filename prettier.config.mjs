@@ -11,7 +11,7 @@ const config = {
     singleQuote: false,
     useTabs: false,
     printWidth: 80,
-    endOfLine: 'auto',
+    endOfLine: 'lf',
 }
 
 export default config
