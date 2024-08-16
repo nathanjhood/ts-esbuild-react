@@ -3,28 +3,29 @@
   "version": "1.0.0",
   "description": "ESBuild with Typescript for React",
   "repository": "git@github.com:nathanjhood/ts-esbuild-react.git",
-  "author": "StoneyDSP <nathanjhood@googlemail.com>",
+  "author": "nathanjhood <nathanjhood@googlemail.com>",
   "license": "MIT",
   "packageManager": "yarn@1.22.22",
   "scripts": {
+    "start": "./dist/cli.mjs",
     "dev": "./src/main.ts",
-    "build": "pkgroll",
+    "build": "run-p type-check \"build:pkg {@}\" --",
+    "build:pkg": "pkgroll",
+    "build:tsc": "tsc --build --force",
+    "minify": "pkgroll --minify",
+    "watch": "pkgroll --watch",
+    "clean": "pkgroll --clean-dist",
+    "sourcemap": "pkgroll --sourcemap",
     "type-check": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --check ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./prettier.config.mjs",
-    "format:fix": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./prettier.config.mjs",
-
-    "prepare": "simple-git-hooks"
-  },
-  "simple-git-hooks": {
-    "pre-commit": [
-      "lint",
-      "type-check"
-    ]
+    "format:fix": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./prettier.config.mjs"
   },
   "dependencies": {
     "@types/node": "^22.3.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "esbuild": "^0.23.0",
     "esbuild-plugin-clean": "^1.0.1",
     "esbuild-plugin-copy": "^2.1.1",
@@ -41,6 +42,7 @@
     "@tsconfig/strictest": "^2.0.5",
     "eslint": "^9.9.0",
     "eslint-config-prettier": "^9.1.0",
+    "npm-run-all2": "^6.2.2",
     "pkgroll": "^2.4.2",
     "prettier": "3.3.3",
     "typescript-eslint": "^8.1.0"
