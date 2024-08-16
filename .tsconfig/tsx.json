@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "display": "tsx",
   // https://tsx.is/typescript#recommendation
   // Here's the recommended configuration to make type-checking behave
@@ -23,7 +24,13 @@
     // // // //
     // The below options were inferred by further usage of the suggestions above,
     "composite": true,
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.tsx.tsbuildinfo",
-    "outDir": "./dist",
-  }
+    "tsBuildInfoFile": "../node_modules/.tmp/tsconfig.tsx.tsbuildinfo",
+    "outDir": "../dist",
+    "baseUrl": "../",
+    "rootDir": "../"
+  },
+  "include": [
+    "../index.ts",
+    "../index.d.ts"
+  ]
 }

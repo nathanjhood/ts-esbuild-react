@@ -1,8 +1,22 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "files": [],
   "references": [
     {
-      "path": "./tsconfig.tsx.json"
+      "path": "./.tsconfig/project.json"
+    },
+    {
+      "path": "./.tsconfig/node.json"
+    },
+    {
+      "path": "./.tsconfig/tsx.json"
     }
+  ],
+  "compilerOptions": {
+    "baseUrl": "./"
+  },
+  "exclude": [
+    "./dist",
+    "./node_modules"
   ]
 }
