@@ -10,7 +10,8 @@ const createCli = async () => {
     {
       shell: true,
       signal: signal,
-      env: process.env
+      env: process.env,
+      
     }
   );
   cli.stdout.on('data', (data) => {
