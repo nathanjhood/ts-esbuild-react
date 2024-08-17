@@ -1,4 +1,9 @@
-!src/bin/
+# assets
+!*.png
+!*.jpg
+!*.bmp
+!*.svg
+!*.ico
 
 # Logs
 logs
