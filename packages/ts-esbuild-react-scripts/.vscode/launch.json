@@ -1,0 +1,174 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "dbg <TS>",
+      "type": "node",
+      "request": "launch",
+      // Debug current file in VSCode
+      "program": "${file}",
+      // pass args to the file to be debugged here
+      "args": [
+        // "build"
+      ],
+      /*
+     * Path to tsx binary
+     * Assuming locally installed
+     */
+      "runtimeExecutable": "tsx",
+      /*
+     * Open terminal when debugging starts (Optional)
+     * Useful to see console.logs
+     */
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      // Files to exclude from debugger (e.g. call stack)
+      "skipFiles": [
+        // Node.js internal core modules
+        "<node_internals>/**",
+        // Ignore all dependencies (optional)
+        "${workspaceFolder}/node_modules/**",
+      ],
+    },
+    {
+      "name": "build <TS>",
+      "type": "node",
+      "request": "launch",
+      // Debug executable in VSCode
+      "program": "${workspaceFolder}/bin/ts-esbuild-react-scripts.ts",
+      "args": [
+        "build"
+      ],
+      /*
+     * Path to tsx binary
+     * Assuming locally installed
+     */
+      "runtimeExecutable": "tsx",
+      /*
+     * Open terminal when debugging starts (Optional)
+     * Useful to see console.logs
+     */
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      // Files to exclude from debugger (e.g. call stack)
+      "skipFiles": [
+        // Node.js internal core modules
+        "<node_internals>/**",
+        // Ignore all dependencies (optional)
+        "${workspaceFolder}/node_modules/**",
+      ],
+    },
+    {
+      "name": "start <TS>",
+      "type": "node",
+      "request": "launch",
+      // Debug executable in VSCode
+      "program": "${workspaceFolder}/bin/ts-esbuild-react-scripts.ts",
+      "args": [
+        "start"
+      ],
+      /*
+     * Path to tsx binary
+     * Assuming locally installed
+     */
+      "runtimeExecutable": "tsx",
+      /*
+     * Open terminal when debugging starts (Optional)
+     * Useful to see console.logs
+     */
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      // Files to exclude from debugger (e.g. call stack)
+      "skipFiles": [
+        // Node.js internal core modules
+        "<node_internals>/**",
+        // Ignore all dependencies (optional)
+        "${workspaceFolder}/node_modules/**",
+      ],
+    },
+    {
+      "name": "test <TS>",
+      "type": "node",
+      "request": "launch",
+      // Debug executable in VSCode
+      "program": "${workspaceFolder}/bin/ts-esbuild-react-scripts.ts",
+      "args": [
+        "test"
+      ],
+      /*
+     * Path to tsx binary
+     * Assuming locally installed
+     */
+      "runtimeExecutable": "tsx",
+      /*
+     * Open terminal when debugging starts (Optional)
+     * Useful to see console.logs
+     */
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      // Files to exclude from debugger (e.g. call stack)
+      "skipFiles": [
+        // Node.js internal core modules
+        "<node_internals>/**",
+        // Ignore all dependencies (optional)
+        "${workspaceFolder}/node_modules/**",
+      ],
+    },
+    {
+      "name": "eject <TS>",
+      "type": "node",
+      "request": "launch",
+      // Debug executable in VSCode
+      "program": "${workspaceFolder}/bin/ts-esbuild-react-scripts.ts",
+      "args": [
+        "eject"
+      ],
+      /*
+     * Path to tsx binary
+     * Assuming locally installed
+     */
+      "runtimeExecutable": "tsx",
+      /*
+     * Open terminal when debugging starts (Optional)
+     * Useful to see console.logs
+     */
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      // Files to exclude from debugger (e.g. call stack)
+      "skipFiles": [
+        // Node.js internal core modules
+        "<node_internals>/**",
+        // Ignore all dependencies (optional)
+        "${workspaceFolder}/node_modules/**",
+      ],
+    },
+    {
+      "name": "build <JS>",
+      "type": "node",
+      "request": "launch",
+      // Debug current file in VSCode
+      "program": "${workspaceFolder}/bin/ts-esbuild-react-scripts.mjs",
+      "args": [
+        "build"
+      ],
+      /*
+     * Path to node binary
+     * Assuming locally installed
+     */
+      "runtimeExecutable": "node",
+      /*
+     * Open terminal when debugging starts (Optional)
+     * Useful to see console.logs
+     */
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      // Files to exclude from debugger (e.g. call stack)
+      "skipFiles": [
+        // Node.js internal core modules
+        "<node_internals>/**",
+        // Ignore all dependencies (optional)
+        "${workspaceFolder}/node_modules/**",
+      ],
+    }
+  ]
+}

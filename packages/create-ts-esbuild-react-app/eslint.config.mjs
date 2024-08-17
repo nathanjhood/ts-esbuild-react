@@ -17,6 +17,7 @@ const configs = [
       "@typescript-eslint/no-explicit-any": "warn",
       "@typescript-eslint/no-unused-vars": "warn",
       "@typescript-eslint/no-require-imports": "off",
+      "@typescript-eslint/triple-slash-reference": "off",
     },
   },
   eslintConfigPrettier, // Make sure to put it last, so it gets the chance to override other configs.
