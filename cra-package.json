@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "docusaurus/website"
+  ],
+  "scripts": {
+    "build": "cd packages/ts-esbuild-react-scripts && node bin/ts-esbuild-react-scripts.js build",
+    "start": "cd packages/ts-esbuild-react-scripts && node bin/ts-esbuild-react-scripts.js start",
+    "test": "cd packages/ts-esbuild-react-scripts && node bin/ts-esbuild-react-scripts.js test",
+    "eslint": "eslint .",
+    "prettier": "prettier .",
+    "format": "npm run prettier -- --write"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "eslint": "^9.9.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.3.3",
+    "typescript-eslint": "^8.1.0"
+  },
+  "dependencies": {}
+}
