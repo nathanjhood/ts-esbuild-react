@@ -6,6 +6,9 @@
       "path": "./.tsconfig/project.json"
     },
     {
+      "path": "./.tsconfig/example.json"
+    },
+    {
       "path": "./.tsconfig/node.json"
     },
     {
