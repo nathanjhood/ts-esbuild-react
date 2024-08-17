@@ -5,7 +5,12 @@
   "version": "1.0.0",
   "icon": "public/favicon.ico",
   "scripts": {
-    "start": "ts-esbuild-react-scripts start"
+    "start": "ts-esbuild-react-scripts start",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --check ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./prettier.config.mjs",
+    "format:fix": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./prettier.config.mjs"
   },
   "packageManager": "yarn@1.22.22",
   "engines": {

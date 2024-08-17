@@ -1,0 +1,53 @@
+{
+  "name": "make-ts-app",
+  "version": "1.0.0",
+  "description": "A template for making CLI applications with typescript",
+  "scripts": {
+    "start": "./dist/cli.mjs",
+    "dev": "./src/cli.ts",
+    "build": "run-p type-check \"build:pkg {@}\" --",
+    "build:pkg": "pkgroll",
+    "build:tsc": "tsc --build --force",
+    "minify": "pkgroll --minify",
+    "watch": "pkgroll --watch",
+    "clean": "pkgroll --clean-dist",
+    "sourcemap": "pkgroll --sourcemap",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --check ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./prettier.config.mjs",
+    "format:fix": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./prettier.config.mjs",
+    "prepare": "simple-git-hooks"
+  },
+  "dependencies": {
+    "@types/node": "^22.3.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dev-utils": "^9.0.15",
+    "@types/react-dom": "^18.3.0",
+    "tslib": "^2.6.3",
+    "tsx": "^4.17.0",
+    "typescript": "^5.5.4"
+  },
+  "devDependencies": {
+    "npm-run-all2": "^6.2.2",
+    "pkgroll": "^2.4.2",
+    "simple-git-hooks": "^2.11.1"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "yarn type-check"
+  },
+  "bin": "./dist/cli.mjs",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.cts",
+  "exports": {
+    "require": {
+      "types": "./dist/index.d.cts",
+      "default": "./dist/index.cjs"
+    },
+    "import": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    }
+  }
+}
