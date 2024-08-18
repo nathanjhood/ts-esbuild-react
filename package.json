@@ -6,9 +6,9 @@
   "version": "1.0.0",
   "icon": "public/favicon.ico",
   "scripts": {
-    "start": "ts-esbuild-react-scripts start",
-    "dev": "ts-esbuild-react-scripts dev",
-    "build": "ts-esbuild-react-scripts build",
+    "start": "NODE_ENV=development tsx ./scripts/start.ts",
+    "test": "NODE_ENV=test ts-esbuild-react-scripts test",
+    "build": "NODE_ENV=production ts-esbuild-react-scripts build",
     "type-check": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
