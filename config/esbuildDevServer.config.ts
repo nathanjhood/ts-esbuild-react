@@ -1,18 +1,18 @@
 import * as esbuild from "esbuild";
 
-const fs: typeof import("fs") = require("fs");
-const evalSourceMapMiddleware: typeof import("react-dev-utils/evalSourceMapMiddleware") = require("react-dev-utils/evalSourceMapMiddleware");
-const noopServiceWorkerMiddleware: typeof import("react-dev-utils/noopServiceWorkerMiddleware") = require("react-dev-utils/noopServiceWorkerMiddleware");
-const ignoredFiles: typeof import("react-dev-utils/ignoredFiles") = require("react-dev-utils/ignoredFiles");
-const redirectServedPath: typeof import("react-dev-utils/redirectServedPathMiddleware") = require("react-dev-utils/redirectServedPathMiddleware");
-const paths: typeof import("./paths").default = require("./paths").default;
-const getHttpsConfig: typeof import("./getHttpsConfig").default =
-  require("./getHttpsConfig").default;
+// const fs: typeof import("fs") = require("fs");
+// const evalSourceMapMiddleware: typeof import("react-dev-utils/evalSourceMapMiddleware") = require("react-dev-utils/evalSourceMapMiddleware");
+// const noopServiceWorkerMiddleware: typeof import("react-dev-utils/noopServiceWorkerMiddleware") = require("react-dev-utils/noopServiceWorkerMiddleware");
+// const ignoredFiles: typeof import("react-dev-utils/ignoredFiles") = require("react-dev-utils/ignoredFiles");
+// const redirectServedPath: typeof import("react-dev-utils/redirectServedPathMiddleware") = require("react-dev-utils/redirectServedPathMiddleware");
+// const paths: typeof import("./paths").default = require("./paths").default;
+// const getHttpsConfig: typeof import("./getHttpsConfig").default =
+//   require("./getHttpsConfig").default;
 
-const host = process.env.HOST || "0.0.0.0";
-const sockHost = process.env.WDS_SOCKET_HOST;
-const sockPath = process.env.WDS_SOCKET_PATH; // default: '/ws'
-const sockPort = process.env.WDS_SOCKET_PORT;
+// const host = process.env.HOST || "0.0.0.0";
+// const sockHost = process.env.WDS_SOCKET_HOST;
+// const sockPath = process.env.WDS_SOCKET_PATH; // default: '/ws'
+// const sockPort = process.env.WDS_SOCKET_PORT;
 
 export function setupServer() {
   // const disableFirewall =

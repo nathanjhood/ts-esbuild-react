@@ -1,16 +1,7 @@
-// @ts-check
-
 import * as esbuild from "esbuild";
-// import esbuildPluginTsc from "esbuild-plugin-tsc";
-// import esbuildPluginCopy from "esbuild-plugin-copy";
-// import esbuildPluginClean from "esbuild-plugin-clean";
-// import autoprefixer from "autoprefixer";
-// import tailwindcss from "tailwindcss";
-// import postCssPlugin from "@deanc/esbuild-plugin-postcss";
 
 const esbuildPluginCopy: typeof import("esbuild-plugin-copy").default = require("esbuild-plugin-copy").default
 const esbuildPluginClean: typeof import("esbuild-plugin-clean").default = require("esbuild-plugin-clean").default
-// import { fileURLToPath, URL } from "url";
 
 const fs: typeof import("fs") = require("fs");
 const path: typeof import("path") = require("path");
@@ -22,46 +13,46 @@ const paths: typeof import("./paths").default = require("./paths").default;
 const getClientEnvironment: typeof import("./env").default =
   require("./env").default;
 
-// Some apps do not need the benefits of saving a web request, so not inlining the chunk
-// makes for a smoother build process.
-const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== "false";
+// // Some apps do not need the benefits of saving a web request, so not inlining the chunk
+// // makes for a smoother build process.
+// const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== "false";
 
-const emitErrorsAsWarnings = process.env.ESLINT_NO_DEV_ERRORS === "true";
-const disableESLintPlugin = process.env.DISABLE_ESLINT_PLUGIN === "true";
+// const emitErrorsAsWarnings = process.env.ESLINT_NO_DEV_ERRORS === "true";
+// const disableESLintPlugin = process.env.DISABLE_ESLINT_PLUGIN === "true";
 
-const imageInlineSizeLimit = parseInt(
-  process.env.IMAGE_INLINE_SIZE_LIMIT || "10000"
-);
+// const imageInlineSizeLimit = parseInt(
+//   process.env.IMAGE_INLINE_SIZE_LIMIT || "10000"
+// );
 
 // Check if TypeScript is setup
 const useTypeScript = fs.existsSync(paths.appTsConfig);
 
-// Check if Tailwind config exists
-const useTailwind = fs.existsSync(
-  path.join(paths.appPath, "tailwind.config.js")
-);
+// // Check if Tailwind config exists
+// const useTailwind = fs.existsSync(
+//   path.join(paths.appPath, "tailwind.config.js")
+// );
 
-// Get the path to the uncompiled service worker (if it exists).
-const swSrc = paths.swSrc;
+// // Get the path to the uncompiled service worker (if it exists).
+// const swSrc = paths.swSrc;
 
-// style files regexes
-const cssRegex = /\.css$/;
-const cssModuleRegex = /\.module\.css$/;
-const sassRegex = /\.(scss|sass)$/;
-const sassModuleRegex = /\.module\.(scss|sass)$/;
+// // style files regexes
+// const cssRegex = /\.css$/;
+// const cssModuleRegex = /\.module\.css$/;
+// const sassRegex = /\.(scss|sass)$/;
+// const sassModuleRegex = /\.module\.(scss|sass)$/;
 
-const hasJsxRuntime = (() => {
-  if (process.env.DISABLE_NEW_JSX_TRANSFORM === "true") {
-    return false;
-  }
+// const hasJsxRuntime = (() => {
+//   if (process.env.DISABLE_NEW_JSX_TRANSFORM === "true") {
+//     return false;
+//   }
 
-  try {
-    require.resolve("react/jsx-runtime");
-    return true;
-  } catch (e) {
-    return false;
-  }
-})();
+//   try {
+//     require.resolve("react/jsx-runtime");
+//     return true;
+//   } catch (e) {
+//     return false;
+//   }
+// })();
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
@@ -82,7 +73,7 @@ export function configFactory(
   // Get environment variables to inject into our app.
   const env = getClientEnvironment(paths.publicUrlOrPath.slice(0, -1));
 
-  const shouldUseReactRefresh = env.raw.FAST_REFRESH;
+  // const shouldUseReactRefresh = env.raw.FAST_REFRESH;
 
   return {
     metafile: true,
@@ -90,16 +81,17 @@ export function configFactory(
 
     // external: ['react', 'react-dom'],
     entryPoints: [paths.appIndexJs],
-    entryNames: isEnvProduction
-      ? "static/[ext]/[name].[hash]"
-      : isEnvDevelopment && "static/[ext]/bundle",
-    // There are also additional JS chunk files if you use code splitting.
-    chunkNames: isEnvProduction
-      ? "static/[ext]/[name].[hash].chunk"
-      : isEnvDevelopment && "static/[ext]/[name].chunk",
+    // entryNames: isEnvProduction
+    //   ? "static/[ext]/[name].[hash]"
+    //   : isEnvDevelopment && "static/[ext]/bundle",
+    // // There are also additional JS chunk files if you use code splitting.
+    // chunkNames: isEnvProduction
+    //   ? "static/[ext]/[name].[hash].chunk"
+    //   : isEnvDevelopment && "static/[ext]/[name].chunk",
     assetNames: "static/media/[name].[hash][ext]",
-    // outfile: fileURLToPath(new URL(publicOutFile, import.meta.url)),
+
     outbase: paths.appSrc,
+    // outfile: fileURLToPath(new URL(publicOutFile, import.meta.url)),
     outdir: paths.appBuild,
     // esbuild uses `publicPath` to determine where the app is being served from.
     // It requires a trailing slash, or the file assets will get an incorrect path.
