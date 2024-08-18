@@ -7,8 +7,8 @@
   "icon": "public/favicon.ico",
   "scripts": {
     "start": "NODE_ENV=development tsx ./scripts/start.ts",
-    "test": "NODE_ENV=test ts-esbuild-react-scripts test",
-    "build": "NODE_ENV=production ts-esbuild-react-scripts build",
+    "test": "NODE_ENV=test tsx test",
+    "build": "NODE_ENV=production tsx build",
     "type-check": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
