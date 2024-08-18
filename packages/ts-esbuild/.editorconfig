@@ -1,4 +1,4 @@
-  # Stop the editor from looking for .editorconfig files in the parent directories
+# Stop the editor from looking for .editorconfig files in the parent directories
 root = true
 
 # NOTE - 'end_of_line' settings should always match with the settings in
