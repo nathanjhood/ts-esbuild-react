@@ -11,6 +11,14 @@ concurrency:
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  BUILD_PATH: "build"
+  PUBLIC_URL: "https://nh-pages.stoneydsp.com/ts-esbuild-react/"
+  HOST: "nh-pages.stoneydsp.com"
+  PORT: 80
+  HTTPS: true
+  TSC_COMPILE_ON_ERROR: false
+  # fast refresh probably does nothing in prod...
+  FAST_REFRESH: true 
 
 jobs:
 
@@ -45,20 +53,20 @@ jobs:
       working-directory: ${{ github.workspace }}
       run: yarn build
 
-    # - name: Test
-    #   shell: bash
-    #   working-directory: ${{ github.workspace }}
-    #   run: yarn test
+    - name: Test
+      shell: bash
+      working-directory: ${{ github.workspace }}
+      run: yarn test
     
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
         name: ts-esbuild-react-${{ matrix.os }}-node-v${{ matrix.node-version }}
-        path: '${{ github.workspace }}/dist'
+        path: '${{ github.workspace }}/${{ env.BUILD_PATH }}'
 
     - name: Download Artifact
       uses: actions/download-artifact@v4
       with:
         name: ts-esbuild-react-${{ matrix.os }}-node-v${{ matrix.node-version }}
-        path: '${{ github.workspace }}/dist'
+        path: '${{ github.workspace }}/${{ env.BUILD_PATH }}'
         github-token: ${{ env.GITHUB_TOKEN }}
