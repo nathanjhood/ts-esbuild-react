@@ -90,11 +90,11 @@ export function configFactory(
     entryPoints: [paths.appIndexJs],
     entryNames: isEnvProduction
       ? "static/[ext]/[name].[hash]"
-      : "static/[ext]/bundle",
+      : isEnvDevelopment && "static/[ext]/bundle",
     // There are also additional JS chunk files if you use code splitting.
     chunkNames: isEnvProduction
       ? "static/[ext]/[name].[hash].chunk"
-      : "static/[ext]/[name].chunk",
+      : isEnvDevelopment && "static/[ext]/[name].chunk",
     assetNames: "static/media/[name].[hash][ext]",
     // outfile: fileURLToPath(new URL(publicOutFile, import.meta.url)),
     outbase: paths.appSrc,
@@ -153,23 +153,23 @@ export function configFactory(
       //   tsconfigPath: paths.appTsConfig,
       //   tsx: true,
       // }),
-      // esbuildPluginClean({
-      //   patterns: [`${paths.appBuild}/*`, /** `!${destinationHTML}` */],
-      //   sync: true,
-      //   verbose: false,
-      // }),
-      // esbuildPluginCopy({
-      //   copyOnStart: true,
-      //   resolveFrom: "cwd",
-      //   assets: {
-      //     from: [`${paths.appPublic}/**/*`],
-      //     to: [paths.appBuild],
-      //     // keepStructure: true
-      //   },
-      //   verbose: false,
-      //   once: false,
-      //   globbyOptions: {},
-      // }),
+      esbuildPluginClean({
+        patterns: [`${paths.appBuild}/*` /** `!${destinationHTML}` */],
+        sync: true,
+        verbose: false,
+      }),
+      esbuildPluginCopy({
+        copyOnStart: true,
+        resolveFrom: "cwd",
+        assets: {
+          from: [`${paths.appPublic}/**/*`],
+          to: [paths.appBuild],
+          // keepStructure: true
+        },
+        verbose: false,
+        once: false,
+        globbyOptions: {},
+      }),
     ],
   } satisfies esbuild.BuildOptions;
   // Use BuildOptions, not CommonOptions, because:
