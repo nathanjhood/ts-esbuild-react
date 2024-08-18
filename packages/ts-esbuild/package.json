@@ -1,0 +1,53 @@
+{
+  "name": "ts-esbuild",
+  "version": "1.0.0",
+  "license": "MIT",
+  "bin": "./dist/cli.mjs",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.cts",
+  "exports": {
+    "require": {
+      "types": "./dist/index.d.cts",
+      "default": "./dist/index.cjs"
+    },
+    "import": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "scripts": {
+    "start": "./dist/cli.mjs",
+    "dev": "./src/cli.ts",
+    "build": "run-p type-check \"build:pkg {@}\" --",
+    "build:pkg": "pkgroll",
+    "build:tsc": "tsc --build --force",
+    "minify": "pkgroll --minify",
+    "watch": "pkgroll --watch",
+    "clean": "pkgroll --clean-dist",
+    "sourcemap": "pkgroll --sourcemap",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --check ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./prettier.config.mjs",
+    "format:fix": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./prettier.config.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "@tsconfig/node20": "^20.1.4",
+    "@tsconfig/recommended": "^1.0.7",
+    "@types/eslint": "^9.6.0",
+    "eslint": "^9.9.0",
+    "eslint-config-prettier": "^9.1.0",
+    "npm-run-all2": "^6.2.2",
+    "pkgroll": "^2.4.2",
+    "prettier": "^3.3.3",
+    "typescript-eslint": "^8.1.0"
+  },
+  "dependencies": {
+    "@types/node": "^22.4.0",
+    "esbuild": "^0.23.1",
+    "tsx": "^4.17.0",
+    "typescript": "^5.5.4"
+  }
+}

@@ -1,51 +1,26 @@
+//@ts-check
+
 import globals from "globals";
 import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
-import pluginReact from "eslint-plugin-react";
+import eslintConfigPrettier from "eslint-config-prettier";
 
-const configs = {
-  browser: {
-    commonjs: [
-      { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
-      { files: ["**/*.{d.ts}"] },
-      { files: ["**/*.config.{cjs,mjs}"] },
-      { files: ["**/*.js"], languageOptions: { sourceType: "commonjs" } },
-      { languageOptions: { globals: globals.browser } },
-      pluginJs.configs.recommended,
-      ...tseslint.configs.recommended,
-      pluginReact.configs.flat.recommended,
-    ],
-    module: [
-      { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx,d.ts}"] },
-      { files: ["**/*.{d.ts}"] },
-      { files: ["**/*.config.{cjs,mjs}"] },
-      { languageOptions: { globals: globals.browser } },
-      pluginJs.configs.recommended,
-      ...tseslint.configs.recommended,
-      pluginReact.configs.flat.recommended,
-    ]
+/** @type {import('typescript-eslint').Config} */
+const configs = [
+  { files: ["**/*.{js,mjs,cjs,ts}"] },
+  { files: ["**/*.js"], languageOptions: { sourceType: "script" } },
+  { languageOptions: { globals: globals.browser } },
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
+  {
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-unused-vars": "warn",
+      "@typescript-eslint/no-require-imports": "off",
+      "@typescript-eslint/no-empty-object-type": "off",
+    },
   },
-  node: {
-    commonjs: [
-      { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx,d.ts}"] },
-      { files: ["**/*.{d.ts}"] },
-      { files: ["**/*.config.{cjs,mjs}"] },
-      { files: ["**/*.js"], languageOptions: { sourceType: "commonjs" } },
-      { languageOptions: { globals: globals.browser } },
-      pluginJs.configs.recommended,
-      ...tseslint.configs.recommended,
-      pluginReact.configs.flat.recommended,
-    ],
-    module: [
-      { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx,d.ts}"] },
-      { files: ["**/*.{d.ts}"] },
-      { files: ["**/*.config.{cjs,mjs}"] },
-      { languageOptions: { globals: globals.browser } },
-      pluginJs.configs.recommended,
-      ...tseslint.configs.recommended,
-      pluginReact.configs.flat.recommended,
-    ]
-  }
-}
+  eslintConfigPrettier, // Make sure to put it last, so it gets the chance to override other configs.
+];
 
-export default configs.browser.module;
+export default configs;

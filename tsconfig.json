@@ -2,10 +2,13 @@
   "files": [],
   "references": [
     {
-      "path": "./.tsconfig/tsconfig.app.json"
+      "path": "./tsconfig.node.json"
     },
     {
-      "path": "./.tsconfig/tsconfig.node.json"
+      "path": "./tsconfig.tsx.json"
+    },
+    {
+      "path": "./tsconfig.react.json"
     }
   ]
 }
