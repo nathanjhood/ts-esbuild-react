@@ -6,7 +6,6 @@ if (process.env.NODE_ENV !== "production")
   throw new Error("NODE_ENV is not production...");
 
 import * as esbuild from "esbuild";
-import * as webpack from "webpack";
 
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
@@ -22,8 +21,6 @@ const path: typeof import("path") = require("path");
 const chalk: typeof import("react-dev-utils/chalk") = require("react-dev-utils/chalk");
 const fs: typeof import("fs-extra") = require("fs-extra");
 const bfj: typeof import("bfj") = require("bfj");
-// const webpack: typeof import("webpack") = require("webpack")
-// const esbuild: typeof import("esbuild") = require("esbuild");
 const configFactory: typeof import("../config/esbuild.config").configFactory =
   require("../config/esbuild.config").configFactory;
 const paths: typeof import("../config/paths").default =
@@ -36,12 +33,12 @@ const printBuildError: typeof import("react-dev-utils/printBuildError") = requir
 
 const measureFileSizesBeforeBuild =
   FileSizeReporter.measureFileSizesBeforeBuild;
-const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
+// const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
 const useYarn = fs.existsSync(paths.yarnLockFile);
 
-// These sizes are pretty large. We'll warn for bundles exceeding them.
-const WARN_AFTER_BUNDLE_GZIP_SIZE = 512 * 1024;
-const WARN_AFTER_CHUNK_GZIP_SIZE = 1024 * 1024;
+// // These sizes are pretty large. We'll warn for bundles exceeding them.
+// const WARN_AFTER_BUNDLE_GZIP_SIZE = 512 * 1024;
+// const WARN_AFTER_CHUNK_GZIP_SIZE = 1024 * 1024;
 
 const isInteractive = process.stdout.isTTY;
 
@@ -59,9 +56,8 @@ const config = configFactory("production");
 // We require that you explicitly set browsers and do not fall back to
 // browserslist defaults.
 
-const {
-  checkBrowsers: checkBrowsers,
-} = require("react-dev-utils/browsersHelper");
+const checkBrowsers: typeof import("./utils/browsersHelper").checkBrowsers =
+  require("./utils/browsersHelper").checkBrowsers;
 
 checkBrowsers(paths.appPath, isInteractive)
   .then(() => {
@@ -69,72 +65,74 @@ checkBrowsers(paths.appPath, isInteractive)
     // This lets us display how much they changed later.
     return measureFileSizesBeforeBuild(paths.appBuild);
   })
-  .then((previousFileSizes) => {
+  .then(async (previousFileSizes) => {
     // Remove all content but keep the directory so that
     // if you're in it, you don't end up in Trash
     fs.emptyDirSync(paths.appBuild);
     // Merge with the public folder
     copyPublicFolder();
     // Start the esbuild build
-    return build(previousFileSizes);
+    return await build(previousFileSizes).then(
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      ({ metafile, previousFileSizes, warnings }) => {
+        if (warnings.length) {
+          console.log(chalk.yellow("Compiled with warnings.\n"));
+          console.log(warnings.join("\n\n"));
+          console.log(
+            "\nSearch for the " +
+              chalk.underline(chalk.yellow("keywords")) +
+              " to learn more about each warning."
+          );
+          console.log(
+            "To ignore, add " +
+              chalk.cyan("// eslint-disable-next-line") +
+              " to the line before.\n"
+          );
+        } else {
+          console.log(chalk.green("Compiled successfully.\n"));
+        }
+
+        console.log(metafile);
+
+        // console.log("File sizes after gzip: ", metafile ?? "unknown...");
+        // printFileSizesAfterBuild(
+        //   metafile,
+        //   previousFileSizes,
+        //   paths.appBuild,
+        //   WARN_AFTER_BUNDLE_GZIP_SIZE,
+        //   WARN_AFTER_CHUNK_GZIP_SIZE
+        // );
+        console.log();
+
+        const appPackage = require(paths.appPackageJson);
+        const publicUrl = paths.publicUrlOrPath;
+        const publicPath = config.publicPath;
+        const buildFolder = path.relative(process.cwd(), paths.appBuild);
+        printHostingInstructions(
+          appPackage,
+          publicUrl,
+          publicPath,
+          buildFolder,
+          useYarn
+        );
+      },
+      (err) => {
+        const tscCompileOnError = process.env.TSC_COMPILE_ON_ERROR === "true";
+        if (tscCompileOnError) {
+          console.log(
+            chalk.yellow(
+              "Compiled with the following type errors (you may want to check these before deploying your app):\n"
+            )
+          );
+          printBuildError(err);
+        } else {
+          console.log(chalk.red("Failed to compile.\n"));
+          printBuildError(err);
+          process.exit(1);
+        }
+      }
+    );
   })
-  .then(
-    ({ stats, previousFileSizes, warnings }) => {
-      if (warnings.length) {
-        console.log(chalk.yellow("Compiled with warnings.\n"));
-        console.log(warnings.join("\n\n"));
-        console.log(
-          "\nSearch for the " +
-            chalk.underline(chalk.yellow("keywords")) +
-            " to learn more about each warning."
-        );
-        console.log(
-          "To ignore, add " +
-            chalk.cyan("// eslint-disable-next-line") +
-            " to the line before.\n"
-        );
-      } else {
-        console.log(chalk.green("Compiled successfully.\n"));
-      }
-
-      console.log("File sizes after gzip: {not implemented yet...}\n", stats);
-      // printFileSizesAfterBuild(
-      //   stats,
-      //   previousFileSizes,
-      //   paths.appBuild,
-      //   WARN_AFTER_BUNDLE_GZIP_SIZE,
-      //   WARN_AFTER_CHUNK_GZIP_SIZE
-      // );
-      console.log();
-
-      const appPackage = require(paths.appPackageJson);
-      const publicUrl = paths.publicUrlOrPath;
-      const publicPath = config.publicPath;
-      const buildFolder = path.relative(process.cwd(), paths.appBuild);
-      printHostingInstructions(
-        appPackage,
-        publicUrl,
-        publicPath,
-        buildFolder,
-        useYarn
-      );
-    },
-    (err) => {
-      const tscCompileOnError = process.env.TSC_COMPILE_ON_ERROR === "true";
-      if (tscCompileOnError) {
-        console.log(
-          chalk.yellow(
-            "Compiled with the following type errors (you may want to check these before deploying your app):\n"
-          )
-        );
-        printBuildError(err);
-      } else {
-        console.log(chalk.red("Failed to compile.\n"));
-        printBuildError(err);
-        process.exit(1);
-      }
-    }
-  )
   .catch((err) => {
     if (err && err.message) {
       console.log(err.message);
@@ -236,6 +234,8 @@ function build(previousFileSizes) {
 
           //   } satisfies webpack.Stats['compilation']
           // } satisfies webpack.Stats;
+
+          console.log(metafile);
 
           const resolveArgs = {
             metafile, // stats,
