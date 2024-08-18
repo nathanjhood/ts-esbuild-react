@@ -19,12 +19,12 @@ env:
   HTTPS: true
   TSC_COMPILE_ON_ERROR: false
   # fast refresh probably does nothing in prod...
-  FAST_REFRESH: true 
+  FAST_REFRESH: true
 
 jobs:
 
   run:
-  
+
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
@@ -36,7 +36,7 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v4
-    
+
     - name: Setup
       uses: actions/setup-node@v4
       with:
@@ -47,7 +47,7 @@ jobs:
     - name: Install
       shell: bash
       working-directory: ${{ github.workspace }}
-      run: yarn install
+      run: yarn
 
     - name: Build
       shell: bash
@@ -58,7 +58,7 @@ jobs:
       shell: bash
       working-directory: ${{ github.workspace }}
       run: yarn test
-    
+
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
