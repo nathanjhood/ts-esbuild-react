@@ -11,6 +11,7 @@ concurrency:
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  NODE_ENV: "production"
   BUILD_PATH: "build"
   PUBLIC_URL: "https://nh-pages.stoneydsp.com/ts-esbuild-react/"
   HOST: "nh-pages.stoneydsp.com"
