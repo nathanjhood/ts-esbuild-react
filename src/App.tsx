@@ -1,25 +1,14 @@
-import 'client-only';
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
-// import * as Server from 'react-dom/server';
 
 import logo from './logo.svg';
 import './App.css';
-
-// let Greet = () => <h1>Hello, world!</h1>
-// console.log(Server.renderToString(<Greet />))
 
 /**
  *
  * @returns {JSX.Element}
  */
 export function App(): JSX.Element {
-  // React.useEffect(() => {
-  //   window.process = {
-  //     ...window.process
-  //   };
-  // }, []);
-
   return (
     <div className="App">
       <header className="App-header">
@@ -41,5 +30,3 @@ export function App(): JSX.Element {
 }
 
 export default App;
-
-// console.log(Server.renderToString(<App />))
