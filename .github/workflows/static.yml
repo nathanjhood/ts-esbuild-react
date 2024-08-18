@@ -32,6 +32,16 @@ concurrency:
 
 env:
   GITHUB_PAGES: true
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  NODE_ENV: "production"
+  BUILD_PATH: "build"
+  PUBLIC_URL: "https://nh-pages.stoneydsp.com/ts-esbuild-react/"
+  HOST: "nh-pages.stoneydsp.com"
+  PORT: 80
+  HTTPS: true
+  TSC_COMPILE_ON_ERROR: false
+  # fast refresh probably does nothing in prod...
+  FAST_REFRESH: true
 
 jobs:
   # Single deploy job since we're just deploying
