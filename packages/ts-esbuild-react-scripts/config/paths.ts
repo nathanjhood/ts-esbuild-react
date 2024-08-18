@@ -7,7 +7,7 @@
 
 const path: typeof import("path") = require("path");
 const fs: typeof import("fs") = require("fs");
-const getPublicUrlOrPath: typeof import("react-dev-utils/getPublicUrlOrPath") = require("react-dev-utils/getPublicUrlOrPath")
+const getPublicUrlOrPath: typeof import("react-dev-utils/getPublicUrlOrPath") = require("react-dev-utils/getPublicUrlOrPath");
 
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebook/create-react-app/issues/637
@@ -30,17 +30,17 @@ const publicUrlOrPath: string = getPublicUrlOrPath(
 const buildPath: string = process.env.BUILD_PATH || "build";
 
 const moduleFileExtensions: string[] = [
-  'web.mjs',
-  'mjs',
-  'web.js',
-  'js',
-  'web.ts',
-  'ts',
-  'web.tsx',
-  'tsx',
-  'json',
-  'web.jsx',
-  'jsx',
+  "web.mjs",
+  "mjs",
+  "web.js",
+  "js",
+  "web.ts",
+  "ts",
+  "web.tsx",
+  "tsx",
+  "json",
+  "web.jsx",
+  "jsx",
 ];
 
 // Resolve file paths in the same order as webpack
@@ -58,23 +58,23 @@ const resolveModule = (resolveFn, filePath) => {
 
 // config after eject: we're in ./config/
 export default {
-  dotenv: resolveApp('.env'),
-  appPath: resolveApp('.'),
+  dotenv: resolveApp(".env"),
+  appPath: resolveApp("."),
   appBuild: resolveApp(buildPath),
-  appPublic: resolveApp('public'),
-  appHtml: resolveApp('public/index.html'),
-  appIndexJs: resolveModule(resolveApp, 'src/index'),
-  appPackageJson: resolveApp('package.json'),
-  appSrc: resolveApp('src'),
-  appTsConfig: resolveApp('tsconfig.json'),
-  appJsConfig: resolveApp('jsconfig.json'),
-  yarnLockFile: resolveApp('yarn.lock'),
-  testsSetup: resolveModule(resolveApp, 'src/setupTests'),
-  proxySetup: resolveApp('src/setupProxy.js'),
-  appNodeModules: resolveApp('node_modules'),
-  appWebpackCache: resolveApp('node_modules/.cache'),
-  appTsBuildInfoFile: resolveApp('node_modules/.cache/tsconfig.tsbuildinfo'),
-  swSrc: resolveModule(resolveApp, 'src/service-worker'),
+  appPublic: resolveApp("public"),
+  appHtml: resolveApp("public/index.html"),
+  appIndexJs: resolveModule(resolveApp, "src/index"),
+  appPackageJson: resolveApp("package.json"),
+  appSrc: resolveApp("src"),
+  appTsConfig: resolveApp("tsconfig.json"),
+  appJsConfig: resolveApp("jsconfig.json"),
+  yarnLockFile: resolveApp("yarn.lock"),
+  testsSetup: resolveModule(resolveApp, "src/setupTests"),
+  proxySetup: resolveApp("src/setupProxy.js"),
+  appNodeModules: resolveApp("node_modules"),
+  appWebpackCache: resolveApp("node_modules/.cache"),
+  appTsBuildInfoFile: resolveApp("node_modules/.cache/tsconfig.tsbuildinfo"),
+  swSrc: resolveModule(resolveApp, "src/service-worker"),
   publicUrlOrPath,
 };
 

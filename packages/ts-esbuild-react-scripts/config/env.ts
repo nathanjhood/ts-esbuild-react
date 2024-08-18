@@ -61,7 +61,6 @@ process.env.NODE_PATH = (process.env.NODE_PATH || "")
 // injected into the application via DefinePlugin in webpack configuration.
 const REACT_APP = /^REACT_APP_/i;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getClientEnvironment(publicUrl: any) {
   const raw: {
     NODE_ENV: "development" | "production" | "test";
