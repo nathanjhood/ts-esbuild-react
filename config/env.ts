@@ -30,9 +30,11 @@ const dotenvFiles = [
 // https://github.com/motdotla/dotenv-expand
 dotenvFiles.forEach((dotenvFile) => {
   if (fs.existsSync(dotenvFile.toString())) {
-    const _dotenv: typeof import('dotenv') = require('dotenv')
-    const _dotenvExpand: typeof import('dotenv-expand').expand = require('dotenv-expand').expand
-    _dotenvExpand(_dotenv.config({
+    const _dotenv: typeof import("dotenv") = require("dotenv");
+    const _dotenvExpand: typeof import("dotenv-expand").expand =
+      require("dotenv-expand").expand;
+    _dotenvExpand(
+      _dotenv.config({
         path: dotenvFile,
       })
     );
@@ -59,16 +61,15 @@ process.env.NODE_PATH = (process.env.NODE_PATH || "")
 // injected into the application via DefinePlugin in webpack configuration.
 const REACT_APP = /^REACT_APP_/i;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getClientEnvironment(publicUrl: any) {
   const raw: {
-        NODE_ENV: "development" | "production" | "test";
-        PUBLIC_URL: any;
-        WDS_SOCKET_HOST: string | undefined;
-        WDS_SOCKET_PATH: string | undefined;
-        WDS_SOCKET_PORT: string | undefined;
-        FAST_REFRESH: boolean;
-    } = Object.keys(process.env)
+    NODE_ENV: "development" | "production" | "test";
+    PUBLIC_URL: any;
+    WDS_SOCKET_HOST: string | undefined;
+    WDS_SOCKET_PATH: string | undefined;
+    WDS_SOCKET_PORT: string | undefined;
+    FAST_REFRESH: boolean;
+  } = Object.keys(process.env)
     .filter((key) => REACT_APP.test(key))
     .reduce(
       (env, key) => {
@@ -100,7 +101,7 @@ function getClientEnvironment(publicUrl: any) {
   // Stringify all values so we can feed into esbuild defines
   const stringified: {
     "process.env": {};
-} = {
+  } = {
     "process.env": Object.keys(raw).reduce((env, key) => {
       env[key] = JSON.stringify(raw[key]);
       return env;
