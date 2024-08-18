@@ -1,14 +1,16 @@
 // @ts-check
 
 import * as esbuild from "esbuild";
-import esbuildPluginTsc from "esbuild-plugin-tsc";
-import esbuildPluginCopy from "esbuild-plugin-copy";
-import esbuildPluginClean from "esbuild-plugin-clean";
+// import esbuildPluginTsc from "esbuild-plugin-tsc";
+// import esbuildPluginCopy from "esbuild-plugin-copy";
+// import esbuildPluginClean from "esbuild-plugin-clean";
 // import autoprefixer from "autoprefixer";
 // import tailwindcss from "tailwindcss";
 // import postCssPlugin from "@deanc/esbuild-plugin-postcss";
 
-import { fileURLToPath, URL } from "url";
+const esbuildPluginCopy: typeof import("esbuild-plugin-copy").default = require("esbuild-plugin-copy").default
+const esbuildPluginClean: typeof import("esbuild-plugin-clean").default = require("esbuild-plugin-clean").default
+// import { fileURLToPath, URL } from "url";
 
 const fs: typeof import("fs") = require("fs");
 const path: typeof import("path") = require("path");
