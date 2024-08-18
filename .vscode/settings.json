@@ -63,6 +63,7 @@
   "prettier.useEditorConfig": true,
   "prettier.bracketSameLine": false,
   "files.associations": {
+    "**/.env.*": "properties",
     "**.d.ts": "typescript",
     "**.d.cts": "typescript",
     "**.d.mts": "typescript",

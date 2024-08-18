@@ -64,6 +64,9 @@
       "request": "launch",
       // Debug current file in VSCode
       "program": "${file}",
+      "env": {
+        "NODE_ENV": "production"
+      },
       /*
      * Path to tsx binary
      * Assuming locally installed
