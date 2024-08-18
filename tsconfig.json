@@ -8,7 +8,10 @@
       "path": "./tsconfig.tsx.json"
     },
     {
-      "path": "./tsconfig.app.json"
-    }
+      "path": "./tsconfig.react.json"
+    },
+    //   // {
+    //   //   "path": "./tsconfig.app.json"
+    //   // }
   ]
 }
