@@ -234,8 +234,6 @@ function build(previousFileSizes) {
           //   } satisfies webpack.Stats['compilation']
           // } satisfies webpack.Stats;
 
-          console.log(metafile);
-
           const resolveArgs = {
             metafile, // stats,
             previousFileSizes,
