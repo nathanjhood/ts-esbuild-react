@@ -1,10 +1,6 @@
-// const fs = require("fs");
-// const path = require("path");
-// const paths = require("./paths");
-
-import fs from "fs";
-import path from "path";
-import { paths } from "./paths";
+const fs: typeof import("fs") = require("fs");
+const path: typeof import("path") = require("path");
+const paths: typeof import("./paths").default = require("./paths").default;
 
 // Make sure that including paths.js after env.js will read .env variables.
 delete require.cache[require.resolve("./paths")];
@@ -19,10 +15,10 @@ if (!NODE_ENV) {
 // https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
 const dotenvFiles = [
   `${paths.dotenv}.${NODE_ENV}.local`,
-  // Don't include `.env.local` for `test` environment
-  // since normally you expect tests to produce the same
-  // results for everyone
-  NODE_ENV !== "test" && `${paths.dotenv}.local`,
+  // // Don't include `.env.local` for `test` environment
+  // // since normally you expect tests to produce the same
+  // // results for everyone
+  // NODE_ENV !== "test" && `${paths.dotenv}.local`,
   `${paths.dotenv}.${NODE_ENV}`,
   paths.dotenv,
 ].filter(Boolean);
@@ -34,8 +30,11 @@ const dotenvFiles = [
 // https://github.com/motdotla/dotenv-expand
 dotenvFiles.forEach((dotenvFile) => {
   if (fs.existsSync(dotenvFile.toString())) {
-    require("dotenv-expand")(
-      require("dotenv").config({
+    const _dotenv: typeof import("dotenv") = require("dotenv");
+    const _dotenvExpand: typeof import("dotenv-expand").expand =
+      require("dotenv-expand").expand;
+    _dotenvExpand(
+      _dotenv.config({
         path: dotenvFile,
       })
     );
@@ -63,8 +62,15 @@ process.env.NODE_PATH = (process.env.NODE_PATH || "")
 const REACT_APP = /^REACT_APP_/i;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function getClientEnvironment(publicUrl: any) {
-  const raw = Object.keys(process.env)
+function getClientEnvironment(publicUrl: any) {
+  const raw: {
+    NODE_ENV: "development" | "production" | "test";
+    PUBLIC_URL: any;
+    WDS_SOCKET_HOST: string | undefined;
+    WDS_SOCKET_PATH: string | undefined;
+    WDS_SOCKET_PORT: string | undefined;
+    FAST_REFRESH: boolean;
+  } = Object.keys(process.env)
     .filter((key) => REACT_APP.test(key))
     .reduce(
       (env, key) => {
@@ -93,8 +99,11 @@ export function getClientEnvironment(publicUrl: any) {
         FAST_REFRESH: process.env.FAST_REFRESH !== "false",
       }
     );
-  // Stringify all values so we can feed into webpack DefinePlugin
-  const stringified = {
+  // Stringify all values so we can feed into esbuild defines
+  const stringified: {
+    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+    "process.env": {};
+  } = {
     "process.env": Object.keys(raw).reduce((env, key) => {
       env[key] = JSON.stringify(raw[key]);
       return env;

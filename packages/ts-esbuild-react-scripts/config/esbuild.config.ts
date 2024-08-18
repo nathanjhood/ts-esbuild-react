@@ -1,25 +1,24 @@
-import fs from "fs";
-import path from "path";
+// @ts-check
+
 import * as esbuild from "esbuild";
-import resolve from "resolve";
+import esbuildPluginTsc from "esbuild-plugin-tsc";
+import esbuildPluginCopy from "esbuild-plugin-copy";
+import esbuildPluginClean from "esbuild-plugin-clean";
+// import autoprefixer from "autoprefixer";
+// import tailwindcss from "tailwindcss";
+// import postCssPlugin from "@deanc/esbuild-plugin-postcss";
 
-import InlineChunkHtmlPlugin from "react-dev-utils/InlineChunkHtmlPlugin";
-import InterpolateHtmlPlugin from "react-dev-utils/InterpolateHtmlPlugin";
-import ModuleScopePlugin from "react-dev-utils/ModuleScopePlugin";
-import getCSSModuleLocalIdent from "react-dev-utils/getCSSModuleLocalIdent";
+import { fileURLToPath, URL } from "url";
 
-import { paths } from "./paths";
-import getClientEnvironment from "./env";
-import ModuleNotFoundPlugin from "react-dev-utils/ModuleNotFoundPlugin";
+const fs: typeof import("fs") = require("fs");
+const path: typeof import("path") = require("path");
 
-// @remove-on-eject-begin
-import getCacheIdentifier from "react-dev-utils/getCacheIdentifier";
-// @remove-on-eject-end
+const moduleFileExtensions: typeof import("./paths").moduleFileExtensions =
+  require("./paths").moduleFileExtensions;
+const paths: typeof import("./paths").default = require("./paths").default;
 
-// Source maps are resource heavy and can cause out of memory issue for large source files.
-const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== "false";
-
-const reactRefreshRuntimeEntry = require.resolve("react-refresh/runtime");
+const getClientEnvironment: typeof import("./env").default =
+  require("./env").default;
 
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
 // makes for a smoother build process.
@@ -37,7 +36,7 @@ const useTypeScript = fs.existsSync(paths.appTsConfig);
 
 // Check if Tailwind config exists
 const useTailwind = fs.existsSync(
-  path.join(paths.appPath, "tailwind.config.{js,cjs,mjs,ts,cts,mts}")
+  path.join(paths.appPath, "tailwind.config.js")
 );
 
 // Get the path to the uncompiled service worker (if it exists).
@@ -84,35 +83,114 @@ export function configFactory(
   const shouldUseReactRefresh = env.raw.FAST_REFRESH;
 
   return {
-    // Each target environment is an environment name followed by a version number. The following environment names are currently supported:
-    // - chrome
-    // - deno
-    // - edge
-    // - firefox
-    // - hermes
-    // - ie
-    // - ios
-    // - node
-    // - opera
-    // - rhino
-    // - safari
-    target: ["browserslist"],
+    metafile: true,
+    absWorkingDir: paths.appPath,
 
-    // These are the "entry points" to our application.
-    // This means they will be the "root" imports that are included in JS bundle.
+    // external: ['react', 'react-dom'],
     entryPoints: [paths.appIndexJs],
-    // The build folder.
+    entryNames: isEnvProduction
+      ? "static/[ext]/[name].[hash]"
+      : "static/[ext]/bundle",
+    // There are also additional JS chunk files if you use code splitting.
+    chunkNames: isEnvProduction
+      ? "static/[ext]/[name].[hash].chunk"
+      : "static/[ext]/[name].chunk",
+    assetNames: "static/media/[name].[hash][ext]",
+    // outfile: fileURLToPath(new URL(publicOutFile, import.meta.url)),
+    outbase: paths.appSrc,
     outdir: paths.appBuild,
-    // There will be one main bundle, and one file per asynchronous chunk.
-    // In development, it does not produce real files.
-    outfile: isEnvProduction
-      ? "static/js/[name].[contenthash:8].js"
-      : "static/js/bundle.js",
-    // webpack uses `publicPath` to determine where the app is being served from.
+    // esbuild uses `publicPath` to determine where the app is being served from.
     // It requires a trailing slash, or the file assets will get an incorrect path.
     // We inferred the "public path" (such as / or /my-project) from homepage.
     publicPath: paths.publicUrlOrPath,
+    loader: {
+      ".jsx": "jsx",
+      ".js": "js",
+      ".tsx": "tsx",
+      ".ts": "ts",
+      ".svg": "dataurl",
+      ".png": "file", // 'file' loaders will be prepending by 'publicPath', i.e., 'https://www.publicurl.com/icon.png'
+      ".ico": "file",
+    },
+    alias: {
+      // 'oldpkg': 'newpkg',
+      // Support React Native Web
+      // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
+      "react-native": "react-native-web",
+      // Allows for better profiling with ReactDevTools
+      ...(isEnvProductionProfile && {
+        "react-dom$": "react-dom/profiling",
+        "scheduler/tracing": "scheduler/tracing-profiling",
+      }),
+    },
+    // These are the reasonable defaults supported by the Node ecosystem.
+    // We also include JSX as a common component filename extension to support
+    // some tools, although we do not recommend using it, see:
+    // https://github.com/facebook/create-react-app/issues/290
+    // `web` extension prefixes have been added for better support
+    // for React Native Web.
+    resolveExtensions: moduleFileExtensions
+      .map((ext) => `.${ext}`)
+      .filter((ext) => useTypeScript || !ext.includes("ts")),
+    minify: isEnvProduction,
+    // sourcemap: true,
+    bundle: true, // Cannot use "alias" without "bundle"
+    // jsxDev: true,
+    // jsx: 'automatic',
+    // format: 'cjs' // There are currently three possible values that can be configured: iife, cjs, and esm
+    // banner: {
+    //   // NODE - Append Hot reload event listener to DOM
+    //   // js: `new EventSource('/esbuild').addEventListener('change', () => location.reload());`,
+    //   // // BROWSER - Append Hot reload event listener to DOM
+    //   js: `(() => new EventSource("/esbuild").onmessage = () => location.reload())();`,
+    // },
+    plugins: [
+      // postCssPlugin({
+      //   plugins: [autoprefixer, tailwindcss()],
+      // }),
+      // esbuildPluginTsc({
+      //   force: true,
+      //   tsconfigPath: paths.appTsConfig,
+      //   tsx: true,
+      // }),
+      // esbuildPluginClean({
+      //   patterns: [`${paths.appBuild}/*`, /** `!${destinationHTML}` */],
+      //   sync: true,
+      //   verbose: false,
+      // }),
+      // esbuildPluginCopy({
+      //   copyOnStart: true,
+      //   resolveFrom: "cwd",
+      //   assets: {
+      //     from: [`${paths.appPublic}/**/*`],
+      //     to: [paths.appBuild],
+      //     // keepStructure: true
+      //   },
+      //   verbose: false,
+      //   once: false,
+      //   globbyOptions: {},
+      // }),
+    ],
   } satisfies esbuild.BuildOptions;
+  // Use BuildOptions, not CommonOptions, because:
+  // - CommonOptions is shared by '.build' and '.context', of which we are using both
+  // - CommonOptions is shared by BuildOptions and TransformOptions, but we're not using '.transform', currently
+  // - we need to spec the build dir and public dir and so forth, so should do it now
 }
+
+// watch: {
+//   onRebuild(error) {
+//     clients.forEach(res => res.write('data: update\n\n'))
+//     clients.length = 0
+//     if (error)
+//       console.log(
+//         `[${chalk.grey(moment().format('h:mm:ss A'))}] esbuild: ${chalk.red('error while rebuilding code')}`
+//       )
+//     else
+//       console.log(
+//         `[${chalk.grey(moment().format('h:mm:ss A'))}] esbuild: ${chalk.green('code rebuilt successfully')}`
+//       )
+//   }
+// },
 
 export default configFactory;
