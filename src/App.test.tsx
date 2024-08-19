@@ -1,4 +1,4 @@
-import act from 'react';
+import * as React from 'react';
 import { test, expect, describe } from '@jest/globals';
 import { render, screen } from '@testing-library/react';
 import App from './App';
@@ -16,4 +16,3 @@ describe('App', () => {
     timeout
   );
 });
-
