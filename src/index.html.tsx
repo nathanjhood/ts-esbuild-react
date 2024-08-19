@@ -3,6 +3,30 @@ import * as ReactDOM from "react-dom";
 
 // import { PUBLIC_URL } from "env";
 
+const env = new ReactEnvironment({
+  development: {
+    NODE_ENV: "development",
+    PUBLIC_URL: "/",
+    HOST: "127.0.0.1",
+    PORT: "3000",
+    HTTPS: "false",
+  },
+  production: {
+    NODE_ENV: "production",
+    PUBLIC_URL: "https://nh-pages.stoneydsp.com/ts-esbuild-react/",
+    HOST: "nh-pages.stoneydsp.com",
+    PORT: "80",
+    HTTPS: "true",
+  },
+  test: {
+    NODE_ENV: "test",
+    PUBLIC_URL: "/",
+    HOST: "127.0.0.1",
+    PORT: "3000",
+    HTTPS: "false"
+  }
+});
+
 
 export const Index = () => {
   return (
