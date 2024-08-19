@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDom from 'react-dom';
 
 import logo from './logo.svg';
-import './App.css';
+// import './App.css';
 
 /**
  *

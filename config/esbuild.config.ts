@@ -1,7 +1,12 @@
 import * as esbuild from "esbuild";
 
-const esbuildPluginCopy: typeof import("esbuild-plugin-copy").default = require("esbuild-plugin-copy").default
-const esbuildPluginClean: typeof import("esbuild-plugin-clean").default = require("esbuild-plugin-clean").default
+const esbuildPluginEnv: typeof import("./plugins/EnvPlugin").default =
+  require("./plugins/EnvPlugin").default;
+
+const esbuildPluginCopy: typeof import("esbuild-plugin-copy").default =
+  require("esbuild-plugin-copy").default;
+const esbuildPluginClean: typeof import("esbuild-plugin-clean").default =
+  require("esbuild-plugin-clean").default;
 
 const fs: typeof import("fs") = require("fs");
 const path: typeof import("path") = require("path");
@@ -139,6 +144,7 @@ export function configFactory(
     //   js: `(() => new EventSource("/esbuild").onmessage = () => location.reload())();`,
     // },
     plugins: [
+      esbuildPluginEnv(),
       // postCssPlugin({
       //   plugins: [autoprefixer, tailwindcss()],
       // }),
