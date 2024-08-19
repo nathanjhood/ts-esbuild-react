@@ -51,8 +51,6 @@ Edit `src/App.tsx` - the page in the browser will refresh when you save any chan
 yarn test
 ```
 
-\*Jest support for unit tests will be added at some point, using the standard React template.
-
 ---
 
 ### Deploy
