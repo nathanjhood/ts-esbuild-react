@@ -1,7 +1,7 @@
-import React from 'react';
+import act from 'react';
 import { test, expect, describe } from '@jest/globals';
 import { render, screen } from '@testing-library/react';
-import App from '@/App';
+import App from './App';
 
 const timeout = 10000;
 
@@ -16,3 +16,4 @@ describe('App', () => {
     timeout
   );
 });
+
