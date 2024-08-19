@@ -4,11 +4,15 @@ import * as ReactDom from 'react-dom';
 import logo from './logo.svg';
 import './App.css';
 
+import { HOME, USER } from 'env';
+
 /**
  *
  * @returns {JSX.Element}
  */
 export function App(): JSX.Element {
+  console.log(USER)
+  console.log(HOME)
   return (
     <div className="App">
       <header className="App-header">

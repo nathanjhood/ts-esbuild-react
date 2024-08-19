@@ -9,6 +9,11 @@ declare namespace NodeJS {
   }
 }
 
+declare module "env" {
+  const env = process.env;
+  export default env;
+}
+
 declare module "*.avif" {
   const src: string;
   export default src;
