@@ -81,14 +81,14 @@ The usual `react-scripts`'s Webpack implementation has been replaced with a simi
 
 ```json
 {
-    "start": "tsx ./scripts/start.ts",
-    "test": "tsx ./scripts/test.ts",
-    "build": "tsx ./scripts/build.ts",
-    "type-check": "tsc --noEmit",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --check ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./prettier.config.mjs",
-    "format:fix": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./prettier.config.mjs"
+  "start": "tsx ./scripts/start.ts",
+  "test": "tsx ./scripts/test.ts",
+  "build": "tsx ./scripts/build.ts",
+  "type-check": "tsc --noEmit",
+  "lint": "eslint .",
+  "lint:fix": "eslint . --fix",
+  "format": "prettier --check ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./prettier.config.mjs",
+  "format:fix": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./prettier.config.mjs"
 }
 ```
 
