@@ -72,12 +72,12 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: yarn build
 
-      - name: Start
-        shell: bash
-        env:
-          NODE_ENV: production
-        working-directory: ${{ github.workspace }}
-        run: yarn start build
+      # - name: Start
+      #   shell: bash
+      #   env:
+      #     NODE_ENV: production
+      #   working-directory: ${{ github.workspace }}
+      #   run: yarn start build
 
       - name: Pack
         shell: bash
