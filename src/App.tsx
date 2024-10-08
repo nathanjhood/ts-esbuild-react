@@ -1,32 +1,30 @@
-import * as React from 'react';
-import * as ReactDom from 'react-dom';
+import React = require("react");
+import "./App.css";
+import logo from "./logo.svg";
 
-import logo from './logo.svg';
-// import './App.css';
-
-/**
- *
- * @returns {JSX.Element}
- */
-export function App(): JSX.Element {
+function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img
+          src={"data:image/svg+xml;base64," + logo}
+          className="App-logo"
+          alt="logo"
+        />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
         <a
           className="App-link"
-          href="https://github.com/nathanjhood/ts-esbuild-react"
+          href="https://github.com/nathanjhood/esbuild-scripts"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by esbuild with Typescript
+          Powered by @nathanjhood/esbuild-scripts
         </a>
       </header>
     </div>
   );
 }
 
-export default App;
+export = App;
