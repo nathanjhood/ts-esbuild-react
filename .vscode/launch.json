@@ -2,89 +2,74 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "run <JS>",
+      "name": "app <TS>",
       "type": "node",
       "request": "launch",
-      // Debug current file in VSCode
-      "program": "${workspaceFolder}/dist/cli.mjs",
-      "args": [
-        "esbuild.config.ts",
-        "--version"
-      ],
-      /*
-     * Path to node binary
-     * Assuming locally installed
-     */
-      "runtimeExecutable": "node",
-      /*
-     * Open terminal when debugging starts (Optional)
-     * Useful to see console.logs
-     */
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
-      // Files to exclude from debugger (e.g. call stack)
-      "skipFiles": [
-        // Node.js internal core modules
-        "<node_internals>/**",
-        // Ignore all dependencies (optional)
-        "${workspaceFolder}/node_modules/**",
-      ],
-    },
-    {
-      "name": "run <TS>",
-      "type": "node",
-      "request": "launch",
-      // Debug current file in VSCode
       "program": "${workspaceFolder}/src/cli.ts",
-      "args": [
-        "esbuild.config.ts"
-      ],
-      /*
-     * Path to tsx binary
-     * Assuming locally installed
-     */
       "runtimeExecutable": "tsx",
-      /*
-     * Open terminal when debugging starts (Optional)
-     * Useful to see console.logs
-     */
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-      // Files to exclude from debugger (e.g. call stack)
       "skipFiles": [
-        // Node.js internal core modules
         "<node_internals>/**",
-        // Ignore all dependencies (optional)
-        "${workspaceFolder}/node_modules/**",
-      ],
+        "${workspaceFolder}/node_modules/**"
+      ]
     },
     {
-      "name": "dbg <TS>",
+      "name": "app <TS>",
       "type": "node",
       "request": "launch",
-      // Debug current file in VSCode
-      "program": "${file}",
-      "env": {
-        "NODE_ENV": "production"
-      },
-      /*
-     * Path to tsx binary
-     * Assuming locally installed
-     */
-      "runtimeExecutable": "tsx",
-      /*
-     * Open terminal when debugging starts (Optional)
-     * Useful to see console.logs
-     */
+      "program": "${workspaceFolder}/dist/cli.mjs",
+      "runtimeExecutable": "node",
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-      // Files to exclude from debugger (e.g. call stack)
       "skipFiles": [
-        // Node.js internal core modules
         "<node_internals>/**",
-        // Ignore all dependencies (optional)
-        "${workspaceFolder}/node_modules/**",
-      ],
+        "${workspaceFolder}/node_modules/**"
+      ]
+    },
+    {
+      "name": "file <TS>",
+      "type": "node",
+      "request": "launch",
+      "program": "${file}",
+      "runtimeExecutable": "tsx",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": [
+        "<node_internals>/**",
+        "${workspaceFolder}/node_modules/**"
+      ]
+    },
+    {
+      "name": "file <JS>",
+      "type": "node",
+      "request": "launch",
+      "program": "${file}",
+      "runtimeExecutable": "node",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": [
+        "<node_internals>/**",
+        "${workspaceFolder}/node_modules/**"
+      ]
+    },
+    {
+      "name": "Attach to process",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "skipFiles": [
+        "<node_internals>/**",
+        "${workspaceFolder}/node_modules/**"
+      ]
+    },
+    {
+      "type": "cmake",
+      "request": "launch",
+      "name": "Debug portfile(s)",
+      "cmakeDebugType": "external",
+      "pipeName": "/tmp/vcpkg_ext_portfile_dbg",
+      "preLaunchTask": "Debug vcpkg commands"
     }
-  ]
+  ],
 }
