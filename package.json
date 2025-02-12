@@ -22,7 +22,7 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@nathanjhood/esbuild-scripts": "^0.0.21",
+    "@nathanjhood/esbuild-scripts": "^0.0.24",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
